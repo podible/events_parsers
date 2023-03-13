@@ -3,12 +3,14 @@ from datetime import datetime
 from urllib.parse import unquote_plus
 from uuid import uuid4, UUID
 
+import pytz
+
 from events_parsers.helpers import check_and_reformat_ip
 from events_parsers.ua_utils.user_agent import normalize_user_agent, normalize_device
 
 
 def process_event(data, ip_database):
-    request_timestamp = datetime.fromtimestamp(data["request_timestamp"], pytz.UTC).strftime("%Y-%m-%d %H:%M:%S.%f")
+    request_timestamp = datetime.fromtimestamp(data["request_timestamp"], pytz.UTC)  # .strftime("%Y-%m-%d %H:%M:%S.%f")  # for kafka
     http_method = data["httpMethod"]
     if http_method == "GET":
         try:

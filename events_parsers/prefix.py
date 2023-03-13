@@ -2,6 +2,8 @@ import json
 from datetime import datetime
 from uuid import uuid4
 
+import pytz
+
 from events_parsers.helpers import check_and_reformat_ip
 from events_parsers.ua_utils.user_agent import normalize_user_agent, normalize_device
 
@@ -73,7 +75,7 @@ def process_event(data, ip_database):
     else:
         device = "Bot"
 
-    request_timestamp = datetime.fromtimestamp(data["request_timestamp"], pytz.UTC).strftime("%Y-%m-%d %H:%M:%S.%f")
+    request_timestamp = datetime.fromtimestamp(data["request_timestamp"], pytz.UTC)  # .strftime("%Y-%m-%d %H:%M:%S.%f")  # for kafka
 
     return {
         "ip": str(ip) if ip is not None else ip,

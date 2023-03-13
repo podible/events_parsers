@@ -130,13 +130,13 @@ def process_event(data, ip_database):
         "city": str(city) if city is not None else city,
         "region": str(region) if region is not None else region,
         "ip_usage_type": str(ip_usage_type) if ip_usage_type is not None else ip_usage_type,
-        "timestamp": timestamp.strftime("%Y-%m-%d %H:%M:%S.%f"),
+        "timestamp": timestamp,  # .strftime("%Y-%m-%d %H:%M:%S.%f"),  # for kafka
         "uuid": str(uuid) if uuid is not None else uuid,
         "trusted": trusted,
         "device": device,
         "normalized_user_agent": normalized_user_agent,
         "request_id": str(request_id) if request_id is not None else request_id,
-        "cw_timestamp": request_timestamp.strftime("%Y-%m-%d %H:%M:%S.%f"),
+        "cw_timestamp": request_timestamp,  # .strftime("%Y-%m-%d %H:%M:%S.%f"),  # for kafka
     }
 
 
