@@ -16,6 +16,6 @@ setuptools.setup(
         "Bug Tracker": "https://github.com/podible/events_parsers/issues"
     },
     license='MIT',
-    packages=['events_parsers'],
+    packages=setuptools.find_packages(),
     install_requires=['pytz==2022.7.1'],
 )
