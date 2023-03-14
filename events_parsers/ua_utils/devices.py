@@ -1,9 +1,11 @@
+import re
+
 devices = [
     {"name": "Apple HomePod", "pattern": "HomePod", "category": "smart_speaker"},
     {"name": "Apple iPad", "pattern": "ipad|iPad|IPAD", "category": "mobile"},
     {
         "name": "Apple TV",
-        "pattern": "Apple TV|AppleTV|apple;apple_tv",
+        "pattern": re.compile("Apple TV|AppleTV|apple;apple_tv"),
         "category": "smart_tv",
         "examples": [
             "apple;apple_tv;33ddb95064d1479ab37179579af23b77;;tpapi;3.200.405",
@@ -12,7 +14,7 @@ devices = [
     },
     {
         "name": "Apple iPhone",
-        "pattern": "iphone|iOS|iPhone|CFNetwork| ios |phone;ios",
+        "pattern": re.compile("iphone|iOS|iPhone|CFNetwork| ios |phone;ios"),
         "category": "mobile",
         "examples": [
             "Fountain/0.5.3 ios https://www.fountain.fm",
@@ -26,12 +28,12 @@ devices = [
     {"name": "Google Chromebook", "pattern": "Chromebook|CrOS", "category": "computer"},
     {
         "name": "Android Tablet",
-        "pattern": "[a|A]ndroid.*[t|T]ablet|[t|T]ablet.*[a|A]ndroid|SM-T| GT-",
+        "pattern": re.compile("[a|A]ndroid.*[t|T]ablet|[t|T]ablet.*[a|A]ndroid|SM-T| GT-"),
         "category": "mobile",
     },
     {
         "name": "Other Smart TV",
-        "pattern": "SmartTV|Roku|CrKey|AFTT Build|AFTM Build|BRAVIA 4K|Opera TV|SmartTv|TSBNetTV|SMART-TV|TV Safari|WebTV|InettvBrowser|GoogleTV|HbbTV|smart-tv|olleh tv|^sony_tv;ps5;|Microsoft Xbox|^Google;Chromecast",
+        "pattern": re.compile("SmartTV|Roku|CrKey|AFTT Build|AFTM Build|BRAVIA 4K|Opera TV|SmartTv|TSBNetTV|SMART-TV|TV Safari|WebTV|InettvBrowser|GoogleTV|HbbTV|smart-tv|olleh tv|^sony_tv;ps5;|Microsoft Xbox|^Google;Chromecast"),
         "category": "smart_tv",
         "comments": "Must be before Android Phones",
         "examples": [
@@ -42,14 +44,14 @@ devices = [
     },
     {
         "name": "Android Phone",
-        "pattern": "ServeStream|Android|android|HTC|ExoPlayer|^AntennaPod/|^GSA/.*\\.arm(64)?$|^sp-agent",
+        "pattern": re.compile("ServeStream|Android|android|HTC|ExoPlayer|^AntennaPod/|^GSA/.*\\.arm(64)?$|^sp-agent"),
         "category": "mobile",
         "comments": "Must be after CrKey and Android Tablet",
         "examples": ["GSA/13.39.12.26.arm64", "GSA/13.39.12.26.arm", "sp-agent", "FileDownloader (Android)"],
     },
     {
         "name": "Windows Computer",
-        "pattern": "Windows|windows|WMPlayer|Winamp|Win32|Win64|NSPlayer|MediaMonkey|NSPlayer|PC",
+        "pattern": re.compile("Windows|windows|WMPlayer|Winamp|Win32|Win64|NSPlayer|MediaMonkey|NSPlayer|PC"),
         "category": "computer",
     },
     {"name": "Amazon Smart Speaker", "pattern": "Alexa|^Echo/", "category": "smart_speaker"},
@@ -59,7 +61,7 @@ devices = [
     {"name": "Other Watch", "pattern": "watch|Watch", "category": "watch"},
     {
         "name": "Other Mobile Device",
-        "pattern": "Player FM$|^Podkicker\/|spotify_unknown|^Castro|^Swoot Agent| KAIOS/|^Zune/|^PodcastGuru |^Pocket Casts$|^AmazonMusic$",
+        "pattern": re.compile("Player FM$|^Podkicker\/|spotify_unknown|^Castro|^Swoot Agent| KAIOS/|^Zune/|^PodcastGuru |^Pocket Casts$|^AmazonMusic$"),
         "category": "mobile",
         "examples": [
             "Mozilla/5.0 (Mobile; Nokia_8110_4G; rv:48.0) Gecko/48.0 Firefox/48.0 KAIOS/2.5.1 PodKast",

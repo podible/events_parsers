@@ -1,41 +1,43 @@
+import re
+
 apps = [
     {"name": "Abandon", "pattern": "Abandon/", "examples": ["Abandon/1.15.28.58.6 CFNetwork/711.3.18 Darwin/14.0.0"]},
     {
         "name": "Acast",
-        "pattern": "^Acast.+([Aa]ndroid|iOS|Darwin)",
+        "pattern": re.compile("^Acast.+([Aa]ndroid|iOS|Darwin)"),
         "examples": ["Acast/3989 CFNetwork/758.4.3 Darwin/15.5.0"],
     },
     {"name": "Accompany", "pattern": "Accompany/", "examples": ["Accompany/462 CFNetwork/758.5.3 Darwin/15.6.0"]},
     {"name": "ActiasLuna", "pattern": "ActiasLuna/", "examples": ["ActiasLuna/1.1.3 CFNetwork/672.1.14 Darwin/14.0.0"]},
     {
         "name": "ActionExtension",
-        "pattern": "ActionExtension/",
+        "pattern": re.compile("ActionExtension/"),
         "examples": ["ActionExtension/154.2.2 CFNetwork/978.0.7 Darwin/18.7.0"],
     },
     {
         "name": "Adori",
-        "pattern": "^Adori(-Dev)?/",
+        "pattern": re.compile("^Adori(-Dev)?/"),
         "examples": ["Adori/1 CFNetwork/978.0.7 Darwin/18.7.0", "Adori-Dev/7 CFNetwork/974.2.1 Darwin/18.0.0"],
     },
     {
         "name": "Adori-Listen",
-        "pattern": "^Adori-Listen/",
+        "pattern": re.compile("^Adori-Listen/"),
         "examples": ["Adori-Listen/1 CFNetwork/978.0.7 Darwin/18.6.0"],
     },
     {
         "name": "AdventureChurch",
-        "pattern": "^AdventureChurch/",
+        "pattern": re.compile("^AdventureChurch/"),
         "examples": ["AdventureChurch/18 CFNetwork/889.9 Darwin/17.2.0"],
     },
     {
         "name": "Aftenposten Android app",
-        "pattern": "Android AP Hermes/",
+        "pattern": re.compile("Android AP Hermes/"),
         "description": "Aftenposten Android app",
         "examples": ["Android AP Hermes/1000094692 _app_"],
     },
     {
         "name": "Aftenposten iOS app",
-        "pattern": "iOS AP Hermes/",
+        "pattern": re.compile("iOS AP Hermes/"),
         "description": "Aftenposten iOS app",
         "examples": [
             "AppleCoreMedia/1.0.0.19E239 (iPhone; U; CPU OS 15_4 like Mac OS X; sv_se) iOS AP Hermes/90.0.0 _app_"
@@ -43,13 +45,13 @@ apps = [
     },
     {
         "name": "Aftonbladet Android app",
-        "pattern": "Android Aftonbladet Hermes/",
+        "pattern": re.compile("Android Aftonbladet Hermes/"),
         "description": "Aftonbladet Android app",
         "examples": ["Android Aftonbladet Hermes/1000094692 _app_"],
     },
     {
         "name": "Aftonbladet iOS app",
-        "pattern": "iOS Aftonbladet Hermes/",
+        "pattern": re.compile("iOS Aftonbladet Hermes/"),
         "description": "Aftonbladet iOS app",
         "examples": [
             "AppleCoreMedia/1.0.0.19E239 (iPhone; U; CPU OS 15_4 like Mac OS X; sv_se) iOS Aftonbladet Hermes/90.0.0 _app_"
@@ -59,7 +61,7 @@ apps = [
     {"name": "AhaRadio", "pattern": "^AhaRadio2/", "examples": ["AhaRadio2/8.12.3 CFNetwork/976 Darwin/18.2.0"]},
     {
         "name": "Airr",
-        "pattern": "^Airr(%20Beta)?/|^Airr \\(",
+        "pattern": re.compile("^Airr(%20Beta)?/|^Airr \\("),
         "urls": ["https://www.airr.io/"],
         "examples": [
             "Airr/3787 CFNetwork/1128.0.1 Darwin/19.6.0",
@@ -70,13 +72,13 @@ apps = [
     },
     {
         "name": "Airsonic",
-        "pattern": "^Airsonic/",
+        "pattern": re.compile("^Airsonic/"),
         "urls": ["https://airsonic.github.io/"],
         "examples": ["Airsonic/11.0.0-SNAPSHOT.20220625052932"],
     },
     {
         "name": "Alexa-enabled device",
-        "pattern": "(^AlexaMediaPlayer/[\\dv]|^Echo/|^AlexaService/|^Alexa Mobile Voice/)",
+        "pattern": re.compile("(^AlexaMediaPlayer/[\\dv]|^Echo/|^AlexaService/|^Alexa Mobile Voice/)"),
         "svg": "amazon.svg",
         "examples": [
             "Echo/1.0(APNG)",
@@ -89,7 +91,7 @@ apps = [
     {"name": "AlienBlue", "pattern": "^AlienBlue/", "examples": ["AlienBlue/2.9.7 CFNetwork/808.2.16 Darwin/16.3.0"]},
     {
         "name": "All You Can Books",
-        "pattern": "AllYouCanBooks",
+        "pattern": re.compile("AllYouCanBooks"),
         "examples": [
             "AllYouCanBooks/510 CFNetwork/811.5.4 Darwin/16.7.0",
             "Mozilla/5.0 (Linux; Android 9; CLT-L29 Build/HUAWEICLT-L29; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/75.0.3770.101 Mobile Safari/537.36 AllYouCanBooksAppAndroid",
@@ -97,13 +99,13 @@ apps = [
     },
     {
         "name": "AllHitMusicRadio",
-        "pattern": "^AllHitMusicRadio/",
+        "pattern": re.compile("^AllHitMusicRadio/"),
         "examples": ["AllHitMusicRadio/1.0 CFNetwork/978.0.7 Darwin/18.5.0"],
     },
     {"name": "Aloha", "pattern": "^Aloha/", "examples": ["Aloha/2 CFNetwork/978.0.7 Darwin/18.7.0"]},
     {
         "name": "Amazon Fire",
-        "pattern": "^Amazon;AF",
+        "pattern": re.compile("^Amazon;AF"),
         "examples": [
             "Amazon;AFTT;756a522d9f1648b89e76e80be654456a;;tpapi",
             "Amazon;AFTSO001;756a522d9f1648b89e76e80be654456a;;tpapi",
@@ -113,7 +115,7 @@ apps = [
     },
     {
         "name": "Amazon Music",
-        "pattern": "^AmazonMusic|^Harley/\\d",
+        "pattern": re.compile("^AmazonMusic|^Harley/\\d"),
         "description": "A music and podcasts streaming app",
         "svg": "amazon.svg",
         "examples": [
@@ -133,14 +135,14 @@ apps = [
     {"name": "AnchorFM", "pattern": "^AnchorFM/", "examples": ["AnchorFM/3.0 (Linux;Android 6.0) ExoPlayerLib/2.5.4"]},
     {
         "name": "Android Browser",
-        "pattern": "\\(Linux; Android \\d*; MHA-AL00 Build/HUAWEIMHA-AL00\\)",
+        "pattern": re.compile("\\(Linux; Android \\d*; MHA-AL00 Build/HUAWEIMHA-AL00\\)"),
         "examples": [
             "Mozilla/5.0 (Linux; Android 9; MHA-AL00 Build/HUAWEIMHA-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Mobile Safari/537.36"
         ],
     },
     {
         "name": "Anghami",
-        "pattern": "Anghami/|^Anghami Android|^%D8%A3%D9%86%D8%BA%D8%A7%D9%85%D9%8A/",
+        "pattern": re.compile("Anghami/|^Anghami Android|^%D8%A3%D9%86%D8%BA%D8%A7%D9%85%D9%8A/"),
         "examples": [
             "Anghami/502044 CFNetwork/1206 Darwin/20.1.0",
             "Anghami Android 6.1.157 / V 11 (6011570) Google store",
@@ -149,7 +151,7 @@ apps = [
     },
     {
         "name": "AntennaPod",
-        "pattern": "(^AntennaPod/|^de\\.danoeh\\.antennapod/|antenna/.*CFNetwork)",
+        "pattern": re.compile("(^AntennaPod/|^de\\.danoeh\\.antennapod/|antenna/.*CFNetwork)"),
         "urls": ["https://github.com/AntennaPod/AntennaPod"],
         "comments": "The de.danoeh version was used when streaming only, and will been phased out as of v2",
         "examples": [
@@ -159,13 +161,13 @@ apps = [
     },
     {
         "name": "Anybox",
-        "pattern": "^Anybox/",
+        "pattern": re.compile("^Anybox/"),
         "examples": ["Anybox/55 CFNetwork/1399.4 Darwin/22.1.0"],
         "urls": ["https://anybox.app/"],
     },
     {
         "name": "Anytime Podcast Player",
-        "pattern": "^Anytime/.*amugofjava",
+        "pattern": re.compile("^Anytime/.*amugofjava"),
         "examples": [
             "Anytime/1.2.1 b74 (phone;android QP1A.190711.020.G965USQU9FVB2) https://github.com/amugofjava/anytime_podcast_player"
         ],
@@ -174,13 +176,13 @@ apps = [
     },
     {
         "name": "APK Downloader",
-        "pattern": "^APKXDL",
+        "pattern": re.compile("^APKXDL"),
         "examples": ["APKXDL (Linux; U; Android 4.4.4;nb_no; trlte/KTU84P) Downloader"],
     },
     {"name": "Apollo", "pattern": "^Apollo/", "examples": ["Apollo/11.28 CFNetwork/1085.4 Darwin/19.0.0"]},
     {
         "name": "Apple iMessage",
-        "pattern": "^MessagesViewService/|^Messages/|^Messages Share Extension/|^MessagesNotificationExtension/",
+        "pattern": re.compile("^MessagesViewService/|^Messages/|^Messages Share Extension/|^MessagesNotificationExtension/"),
         "examples": [
             "MessagesViewService/1.0 CFNetwork/1120 Darwin/19.0.0",
             "Messages/5500 CFNetwork/1098 Darwin/19.0.0 (x86_64)",
@@ -190,19 +192,19 @@ apps = [
     },
     {
         "name": "Apple Mail",
-        "pattern": "^Mail/",
+        "pattern": re.compile("^Mail/"),
         "examples": ["Mail/1283 CFNetwork/520.5.1 Darwin/11.4.2 (x86_64) (MacBookPro5%2C4)"],
     },
     {
         "name": "Apple News",
-        "pattern": "AppleNews/",
+        "pattern": re.compile("AppleNews/"),
         "examples": [
             "Mozilla/5.0 (iPad; CPU OS 12_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) AppleNews/2166 Version/4.4"
         ],
     },
     {
         "name": "Apple Podcasts",
-        "pattern": "^Podcasts/.*|^Balados/|^Podcasti/|^Podcastit/|^Podcasturi/|^Podcasty/|^Podcast\u2019ler/|^Podcast%E2%80%99ler/|^Podkaster/|^Podcaster/.*\\(.*\\)|^Podcastok/|^\u041f\u043e\u0434\u043a\u0430\u0441\u0442\u0438/|^\u041f\u043e\u0434\u043a\u0430\u0441\u0442\u044b/|^\u05e4\u05d5\u05d3\u05e7\u05d0\u05e1\u05d8\u05d9\u05dd/|^\u0627\u0644\u0628\u0648\u062f\u0643\u0627\u0633\u062a/|^\u092a\u0949\u0921\u0915\u093e\u0938\u094d\u091f/|^\u0e1e\u0e47\u0e2d\u0e14\u0e04\u0e32\u0e2a\u0e17\u0e4c/|^\u64ad\u5ba2/|^\ud31f\uce90\uc2a4\ud2b8/|\u30dd\u30c3\u30c9\u30ad\u30e3\u30b9\u30c8/|^%D8%A7%D9%84%D8%A8%D9%88%D8%AF%D9%83%D8%A7%D8%B3%D8%AA/|^%D0%9F%D0%BE%D0%B4%D0%BA%D0%B0%D1%81%D1%82%D1%8B/|^%D0%9F%D0%BE%D0%B4%D0%BA%D0%B0%D1%81%D1%82%D0%B8/|^Podcastok/|^%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98%D7%99%D7%9D/|^%ED%8C%9F%EC%BA%90%EC%8A%A4%ED%8A%B8/|^%D8%A7%D9%95%D8%B3%D9%85%D8%B9%D9%84%D9%8A/|^Podcaster/\\d|^%E6%92%AD%E5%AE%A2/|^%E3%83%9D%E3%83%83%E3%83%89%E3%82%AD%E3%83%A3%E3%82%B9%E3%83%88/|^Podcast/|^%E0%B8%9E%E0%B9%87%E0%B8%AD%E0%B8%94%E0%B8%84%E0%B8%B2%E0%B8%AA%E0%B8%97%E0%B9%8C/\\d",
+        "pattern": re.compile("^Podcasts/.*|^Balados/|^Podcasti/|^Podcastit/|^Podcasturi/|^Podcasty/|^Podcast\u2019ler/|^Podcast%E2%80%99ler/|^Podkaster/|^Podcaster/.*\\(.*\\)|^Podcastok/|^\u041f\u043e\u0434\u043a\u0430\u0441\u0442\u0438/|^\u041f\u043e\u0434\u043a\u0430\u0441\u0442\u044b/|^\u05e4\u05d5\u05d3\u05e7\u05d0\u05e1\u05d8\u05d9\u05dd/|^\u0627\u0644\u0628\u0648\u062f\u0643\u0627\u0633\u062a/|^\u092a\u0949\u0921\u0915\u093e\u0938\u094d\u091f/|^\u0e1e\u0e47\u0e2d\u0e14\u0e04\u0e32\u0e2a\u0e17\u0e4c/|^\u64ad\u5ba2/|^\ud31f\uce90\uc2a4\ud2b8/|\u30dd\u30c3\u30c9\u30ad\u30e3\u30b9\u30c8/|^%D8%A7%D9%84%D8%A8%D9%88%D8%AF%D9%83%D8%A7%D8%B3%D8%AA/|^%D0%9F%D0%BE%D0%B4%D0%BA%D0%B0%D1%81%D1%82%D1%8B/|^%D0%9F%D0%BE%D0%B4%D0%BA%D0%B0%D1%81%D1%82%D0%B8/|^Podcastok/|^%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98%D7%99%D7%9D/|^%ED%8C%9F%EC%BA%90%EC%8A%A4%ED%8A%B8/|^%D8%A7%D9%95%D8%B3%D9%85%D8%B9%D9%84%D9%8A/|^Podcaster/\\d|^%E6%92%AD%E5%AE%A2/|^%E3%83%9D%E3%83%83%E3%83%89%E3%82%AD%E3%83%A3%E3%82%B9%E3%83%88/|^Podcast/|^%E0%B8%9E%E0%B9%87%E0%B8%AD%E0%B8%94%E0%B8%84%E0%B8%B2%E0%B8%AA%E0%B8%97%E0%B9%8C/\\d"),
         "description": "The Apple Podcasts app.",
         "comments": "This could be on iOS, iPadOS or macOS. Used when downloading podcasts (not progressive downloads), with support for the following languages: Arabic, Chinese, Finnish, French, English, Hebrew, Hindi, Hungarian, Korean, Polish, Romanian, Russian, Serbian, Slovenian, Swedish, Thai, Turkish.",
         "examples": [
@@ -239,12 +241,12 @@ apps = [
     },
     {
         "name": "Apple Reminders",
-        "pattern": "^Recordatorios/",
+        "pattern": re.compile("^Recordatorios/"),
         "examples": ["Recordatorios/2466 CFNetwork/1329 Darwin/21.3.0"],
     },
     {
         "name": "Askoyvaringen iOS app",
-        "pattern": "iOS Askoyvaringen Hermes/",
+        "pattern": re.compile("iOS Askoyvaringen Hermes/"),
         "description": "Askoyvaringen iOS app",
         "examples": [
             "AppleCoreMedia/1.0.0.19E239 (iPhone; U; CPU OS 15_4 like Mac OS X; sv_se) iOS Askoyvaringen Hermes/90.0.0 _app_"
@@ -252,27 +254,27 @@ apps = [
     },
     {
         "name": "Audacious",
-        "pattern": "^Audacious",
+        "pattern": re.compile("^Audacious"),
         "description": "Audacious is an open source audio player.",
         "urls": ["https://audacious-media-player.org/"],
         "examples": ["Audacious/3.10.1 neon/0.30.2"],
     },
     {
         "name": "Audacy",
-        "pattern": "^Radio\\.com/",
+        "pattern": re.compile("^Radio\\.com/"),
         "examples": ["Radio.com/12.2.0 (com.cbsradio.cbsradioplayer; build:1; iOS 14.6.0) Alamofire/4.8.1"],
     },
     {"name": "Audible", "pattern": "(^com\\.audible\\.playersdk\\.player|^Audible,|^Audible.*Darwin)"},
     {"name": "Audio", "pattern": "^Audio/", "examples": ["Audio/105 CFNetwork/548.1.4 Darwin/11.0.0"]},
     {
         "name": "Audio Now",
-        "pattern": "^Android_AudioNow",
+        "pattern": re.compile("^Android_AudioNow"),
         "urls": ["https://audionow.de/"],
         "examples": ["Android_AudioNow"],
     },
     {
         "name": "AudioWave",
-        "pattern": "(^AudioWave/1|^AudioWave iOS)",
+        "pattern": re.compile("(^AudioWave/1|^AudioWave iOS)"),
         "urls": ["https://apps.apple.com/be/app/audiowave-podcast-player/id1602776751"],
         "examples": ["AudioWave/1.5 (+https://audiowave.io/; iPhone 15.4)", "AudioWave iOS"],
     },
@@ -281,7 +283,7 @@ apps = [
     {"name": "Autopod", "pattern": "^Autopod/", "examples": ["Autopod/0 CFNetwork/609.1.4 Darwin/13.0.0"]},
     {
         "name": "avassetReader",
-        "pattern": "^avassetReader/",
+        "pattern": re.compile("^avassetReader/"),
         "examples": ["avassetReader/1 CFNetwork/887 Darwin/17.0.0"],
     },
     {"name": "avopodo", "pattern": "^avopodo/", "examples": ["avopodo/2 CFNetwork/975.0.3 Darwin/18.2.0"]},
@@ -289,12 +291,12 @@ apps = [
     {"name": "Azul", "pattern": "^Azul/", "examples": ["Azul/5.8 CFNetwork/711.1.16 Darwin/14.0.0"]},
     {
         "name": "BaladoQuebec",
-        "pattern": "^BaladoQuebec/",
+        "pattern": re.compile("^BaladoQuebec/"),
         "examples": ["BaladoQuebec/1 CFNetwork/808.2.16 Darwin/16.3.0"],
     },
     {
         "name": "Banter",
-        "pattern": "^Banter/|^banter-beta/",
+        "pattern": re.compile("^Banter/|^banter-beta/"),
         "examples": [
             "Banter/1.20.7 CFNetwork/897.15 Darwin/17.5.0",
             "banter-beta/1.14.2 CFNetwork/893.14.2 Darwin/17.3.0",
@@ -302,32 +304,32 @@ apps = [
     },
     {
         "name": "Barabbas Road Church",
-        "pattern": "^Barabbas Road Church/",
+        "pattern": re.compile("^Barabbas Road Church/"),
         "examples": ["Barabbas Road Church/4.9.5 CFNetwork/1098.7 Darwin/19.0.0"],
     },
     {"name": "BashPodder", "pattern": "^BashPodder", "urls": ["http://lincgeek.org/bashpodder/"]},
     {
         "name": "BBC iPlayer Radio",
-        "pattern": "BBCiPlayerRadio/",
+        "pattern": re.compile("BBCiPlayerRadio/"),
         "urls": ["https://www.bbc.co.uk/programmes/p00zh17p"],
         "examples": ["BBCiPlayerRadio/2.16.0.8764 CFNetwork/1107.1 Darwin/19.0.0"],
     },
     {
         "name": "BBC Sounds",
-        "pattern": "BBC%20Sounds/",
+        "pattern": re.compile("BBC%20Sounds/"),
         "urls": ["https://www.bbc.co.uk/sounds/help/questions/getting-started-with-bbc-sounds/sounds-intro"],
         "examples": ["BBC%20Sounds/1.13.1.7716 CFNetwork/1107.1 Darwin/19.0.0"],
     },
     {"name": "Bear", "pattern": "^Bear/", "examples": ["Bear/5702 CFNetwork/811.8 Darwin/16.7.0 (x86_64)"]},
     {
         "name": "Bergens Tidende Android app",
-        "pattern": "Android BT Hermes/",
+        "pattern": re.compile("Android BT Hermes/"),
         "description": "Bergens Tidende Android app",
         "examples": ["Android BT Hermes/1000094692 _app_"],
     },
     {
         "name": "Bergens Tidende iOS app",
-        "pattern": "iOS BT Hermes/",
+        "pattern": re.compile("iOS BT Hermes/"),
         "description": "Bergens Tidende iOS app",
         "examples": [
             "AppleCoreMedia/1.0.0.19E239 (iPhone; U; CPU OS 15_4 like Mac OS X; sv_se) iOS BT Hermes/90.0.0 _app_"
@@ -338,7 +340,7 @@ apps = [
     {"name": "Bible", "pattern": "^Bible/", "examples": ["Bible/11 CFNetwork/978.0.7 Darwin/18.6.0"]},
     {
         "name": "Bitcast",
-        "pattern": "^Bitcast(\\.fm)?/|^bitcast 4 reel/|^bitcastbitcast/",
+        "pattern": re.compile("^Bitcast(\\.fm)?/|^bitcast 4 reel/|^bitcastbitcast/"),
         "urls": ["https://bitcast.fm/"],
         "examples": [
             "Bitcast/336 CFNetwork/1197 Darwin/20.0.0",
@@ -350,7 +352,7 @@ apps = [
     {"name": "Bitly", "pattern": "^Bitly/", "examples": ["Bitly/445 CFNetwork/1107.1 Darwin/19.0.0"]},
     {
         "name": "BizCoachPal",
-        "pattern": "^BizCoachPal/",
+        "pattern": re.compile("^BizCoachPal/"),
         "examples": ["BizCoachPal/1.5.7.24.4 CFNetwork/711.0.6 Darwin/14.0.0"],
     },
     {"name": "BMR", "pattern": "^BMR/", "examples": ["BMR/1 CFNetwork/902.2 Darwin/17.7.0"]},
@@ -366,24 +368,24 @@ apps = [
     {"name": "Broadcast", "pattern": "^Broadcast/", "examples": ["Broadcast/1.0 CFNetwork/893.14.2 Darwin/17.3.0"]},
     {
         "name": "Broadway Podcast Network",
-        "pattern": "BroadwayPodcastNetwork/iOS",
+        "pattern": re.compile("BroadwayPodcastNetwork/iOS"),
         "description": "The Broadway Podcast Network iOS App",
         "examples": ["BroadwayPodcastNetwork/iOS"],
     },
     {"name": "Browser", "pattern": "^Browser/", "examples": ["Browser/21060 CFNetwork/887 Darwin/17.0.0"]},
     {
         "name": "Browser iOS",
-        "pattern": "^browser_ios/",
+        "pattern": re.compile("^browser_ios/"),
         "examples": ["browser_ios/19100.2.142 CFNetwork/1107.1 Darwin/19.0.0"],
     },
     {
         "name": "BrowserPlus",
-        "pattern": "^BrowserPlus/",
+        "pattern": re.compile("^BrowserPlus/"),
         "examples": ["BrowserPlus/21066 CFNetwork/978.0.7 Darwin/18.5.0"],
     },
     {
         "name": "Bullhorn",
-        "pattern": "^Bullhorn(/.*)?$|^Bullhorn \\(",
+        "pattern": re.compile("^Bullhorn(/.*)?$|^Bullhorn \\("),
         "urls": ["http://bullhorn.fm/"],
         "examples": [
             "Bullhorn/1.0 (+http://bullhorn.fm/)",
@@ -394,7 +396,7 @@ apps = [
     },
     {
         "name": "Bygdanytt iOS app",
-        "pattern": "iOS Bygdanytt Hermes/",
+        "pattern": re.compile("iOS Bygdanytt Hermes/"),
         "description": "Bygdanytt iOS app",
         "examples": [
             "AppleCoreMedia/1.0.0.19E239 (iPhone; U; CPU OS 15_4 like Mac OS X; sv_se) iOS Bygdanytt Hermes/90.0.0 _app_"
@@ -406,7 +408,7 @@ apps = [
     {"name": "Cast", "pattern": "^Cast/", "examples": ["Cast/1031 CFNetwork/711.4.6 Darwin/14.0.0"]},
     {
         "name": "Castamatic",
-        "pattern": "^Castamatic/",
+        "pattern": re.compile("^Castamatic/"),
         "description": "Your new favorite podcast player for iOS devices",
         "urls": ["https://castamatic.com"],
         "examples": [
@@ -417,7 +419,7 @@ apps = [
     {"name": "Castaway", "pattern": "^Castaway/", "examples": ["Castaway/8 CFNetwork/1098.7 Darwin/19.0.0"]},
     {
         "name": "CastBox",
-        "pattern": "^Cast[Bb]ox",
+        "pattern": re.compile("^Cast[Bb]ox"),
         "examples": [
             "CastBox/8.2.6-191015245 (Linux;Android 10) ExoPlayerLib/2.10.4",
             "CastBox/8.19.0-200927161 (Linux;Android 10) ExoPlayerLib/2.10.4",
@@ -430,13 +432,13 @@ apps = [
     {"name": "Casterbate", "pattern": "^Casterbate/", "examples": ["Casterbate/1 CFNetwork/744.5 Darwin/14.4.0"]},
     {
         "name": "castget",
-        "pattern": "^castget ",
+        "pattern": re.compile("^castget "),
         "urls": ["https://castget.johndal.com/"],
         "examples": ["castget 1.2.4 (castget rss enclosure downloader)"],
     },
     {
         "name": "Castro",
-        "pattern": "^Castro[/ ]",
+        "pattern": re.compile("^Castro[/ ]"),
         "examples": ["Castro 2019.13/1167", "Castro 2020.14/1287", "Castro/1024 CFNetwork/955.1.2 Darwin/18.0.0"],
     },
     {"name": "Casts", "pattern": "^Casts/", "examples": ["Casts/652 CFNetwork/758.2.8 Darwin/15.0.0"]},
@@ -448,12 +450,12 @@ apps = [
     {"name": "chorus", "pattern": "^chorus/", "examples": ["chorus/698 CFNetwork/811.5.4 Darwin/16.6.0"]},
     {
         "name": "Christian Life Austin",
-        "pattern": "^Christian Life Austin/",
+        "pattern": re.compile("^Christian Life Austin/"),
         "examples": ["Christian Life Austin/4.9.4 CFNetwork/893.14.2 Darwin/17.3.0"],
     },
     {
         "name": "Chromecast device",
-        "pattern": "CrKey/|\\(CrKey |^Google;Chromecast",
+        "pattern": re.compile("CrKey/|\\(CrKey |^Google;Chromecast"),
         "examples": [
             "Mozilla/5.0 (CrKey armv7l 1.8.17977) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.0 Safari/537.36",
             "Google;ChromecastHD;756a522d9f1648b89e76e80be654456a;;tpapi;3.200.454",
@@ -463,7 +465,7 @@ apps = [
     {"name": "Clammr", "pattern": "^Clammr/", "examples": ["Clammr/5 CFNetwork/758.3.15 Darwin/15.4.0"]},
     {
         "name": "Classic FM",
-        "pattern": "^Classic FM/",
+        "pattern": re.compile("^Classic FM/"),
         "examples": ["Classic FM/1563188702 CFNetwork/978.0.7 Darwin/18.7.0"],
     },
     {"name": "Client", "pattern": "^Client/", "examples": ["Client/16042 CFNetwork/1098.7 Darwin/19.0.0"]},
@@ -473,37 +475,37 @@ apps = [
     {"name": "Copied", "pattern": "^Copied/", "examples": ["Copied/142 CFNetwork/760.2.6 Darwin/15.2.0 (x86_64)"]},
     {
         "name": "CoreDataPlayerSample",
-        "pattern": "^CoreDataPlayerSample/",
+        "pattern": re.compile("^CoreDataPlayerSample/"),
         "examples": ["CoreDataPlayerSample/1 CFNetwork/975.0.3 Darwin/17.7.0"],
     },
     {"name": "Cosmicast", "pattern": "^Cosmicast/", "examples": ["Cosmicast/1 CFNetwork/1107.1 Darwin/19.0.0"]},
     {
         "name": "CPod",
-        "pattern": "CPod/",
+        "pattern": re.compile("CPod/"),
         "description": "A simple, beautiful podcast app, for Windows, MacOS and Linux",
         "urls": ["https://github.com/z-------------/CPod"],
         "examples": ["CPod/1.27.1 (github.com/z-------------)"],
     },
     {
         "name": "Crosspoint City Church",
-        "pattern": "^Crosspoint City Church/",
+        "pattern": re.compile("^Crosspoint City Church/"),
         "examples": ["Crosspoint City Church/4.12.5 CFNetwork/976 Darwin/18.2.0"],
     },
     {"name": "Crosspointe", "pattern": "^Crosspointe/", "examples": ["Crosspointe/1 CFNetwork/1107.1 Darwin/19.0.0"]},
     {
         "name": "CrossPreach",
-        "pattern": "^CrossPreach/",
+        "pattern": re.compile("^CrossPreach/"),
         "examples": ["CrossPreach/1.3 CFNetwork/711.1.16 Darwin/14.0.0"],
     },
     {
         "name": "DataDogApp",
-        "pattern": "^DataDogApp/",
+        "pattern": re.compile("^DataDogApp/"),
         "examples": ["DataDogApp/0.8.12 CFNetwork/811.5.4 Darwin/16.6.0"],
     },
     {"name": "DaumWebtoon", "pattern": "^DaumWebtoon/", "examples": ["DaumWebtoon/1 CFNetwork/975.0.3 Darwin/18.2.0"]},
     {
         "name": "Deezer",
-        "pattern": "(^Deezer/|^DeezerJukebox/|^Deezer.*Electron)",
+        "pattern": re.compile("(^Deezer/|^DeezerJukebox/|^Deezer.*Electron)"),
         "urls": [
             "https://play.google.com/store/apps/details?id=deezer.android.app",
             "https://apps.apple.com/us/app/deezer-music-podcast-player/id292738169",
@@ -520,7 +522,7 @@ apps = [
     {"name": "Delve", "pattern": "^Delve/", "examples": ["Delve/41 CFNetwork/978.0.7 Darwin/18.7.0"]},
     {
         "name": "DevCasts",
-        "pattern": "^devcasts/.*CFNetwork",
+        "pattern": re.compile("^devcasts/.*CFNetwork"),
         "description": "Our Devcasts app is a new kind of podcast listening app. It is simply the best way for developers to enjoy all of the excellent podcast content created for developers.",
         "urls": ["http://devcasts.co/"],
         "examples": ["devcasts/1.0.1.00 CFNetwork/1197 Darwin/20.0.0"],
@@ -529,12 +531,12 @@ apps = [
     {"name": "Documents", "pattern": "^Documents/", "examples": ["Documents/6.9.8.634 CFNetwork/1107.1 Darwin/19.0.0"]},
     {
         "name": "DoggCatcher",
-        "pattern": "DoggCatcher",
+        "pattern": re.compile("DoggCatcher"),
         "examples": ["Mozilla/5.0 (Linux; U; Windows NT 6.1; en-us; dream) DoggCatcher"],
     },
     {
         "name": "DolphiniPad",
-        "pattern": "^Dolphini(Pad|Phone)/",
+        "pattern": re.compile("^Dolphini(Pad|Phone)/"),
         "examples": [
             "DolphiniPad/9000144 CFNetwork/758.5.3 Darwin/15.6.0",
             "DolphiniPhone/9000005 CFNetwork/758.0.2 Darwin/15.0.0",
@@ -542,13 +544,13 @@ apps = [
     },
     {
         "name": "doubleTwist CloudPlayer",
-        "pattern": "^doubleTwist CloudPlayer",
+        "pattern": re.compile("^doubleTwist CloudPlayer"),
         "urls": ["https://www.doubletwist.com/cloudplayer"],
         "examples": ["doubleTwist CloudPlayer"],
     },
     {
         "name": "Downcast",
-        "pattern": "Downcast/",
+        "pattern": re.compile("Downcast/"),
         "examples": [
             "Downcast/2.9.42 (iPhone; iOS 12.4.1; Scale/3.00)",
             "Downcast/2.9.57 (iPad; iOS 14.2; Scale/2.00)",
@@ -558,39 +560,39 @@ apps = [
     {"name": "Downie", "pattern": "^Downie/", "examples": ["Downie/1108 CFNetwork/760.2.6 Darwin/15.2.0 (x86_64)"]},
     {
         "name": "DownloadAll",
-        "pattern": "^DownloadAll/",
+        "pattern": re.compile("^DownloadAll/"),
         "examples": ["DownloadAll/1.0.3 CFNetwork/672.1.13 Darwin/14.0.0"],
     },
     {
         "name": "Downloader",
-        "pattern": "^Downloader/",
+        "pattern": re.compile("^Downloader/"),
         "examples": ["Downloader/1.0.0 CFNetwork/711.3.18 Darwin/14.0.0"],
     },
     {
         "name": "DownloaderLite",
-        "pattern": "^DownloaderLite/",
+        "pattern": re.compile("^DownloaderLite/"),
         "examples": ["DownloaderLite/1.0 CFNetwork/672.1.14 Darwin/14.0.0"],
     },
     {
         "name": "DownloaderSound",
-        "pattern": "^DownloaderSound/",
+        "pattern": re.compile("^DownloaderSound/"),
         "examples": ["DownloaderSound/1.4 CFNetwork/609.1.4 Darwin/13.0.0"],
     },
     {
         "name": "Download Shuttle",
-        "pattern": "^Download Shuttle/",
+        "pattern": re.compile("^Download Shuttle/"),
         "examples": ["Download Shuttle/24 CFNetwork/1082.2 Darwin/19.0.0 (x86_64)"],
     },
     {
         "name": "DownloadPro",
-        "pattern": "^DownloadPro/",
+        "pattern": re.compile("^DownloadPro/"),
         "examples": ["DownloadPro/1.0.1 CFNetwork/672.0.8 Darwin/14.0.0"],
     },
     {"name": "Downloads", "pattern": "^Downloads/", "examples": ["Downloads/20375 CFNetwork/1098.7 Darwin/19.0.0"]},
     {"name": "DownMan", "pattern": "^DownMan/", "examples": ["DownMan/3.0.1 CFNetwork/609 Darwin/13.0.0"]},
     {
         "name": "DowntonAppy",
-        "pattern": "^DowntonAppy/",
+        "pattern": re.compile("^DowntonAppy/"),
         "examples": ["DowntonAppy/1382280772 CFNetwork/548.0.4 Darwin/11.0.0"],
     },
     {"name": "DriveCast", "pattern": "^DriveCast/", "examples": ["DriveCast/2.9 CFNetwork/609.1.4 Darwin/13.0.0"]},
@@ -598,13 +600,13 @@ apps = [
     {"name": "Dynamo", "pattern": "^Dynamo/", "examples": ["Dynamo/1.0"]},
     {
         "name": "E24 Android app",
-        "pattern": "Android E24 Hermes/",
+        "pattern": re.compile("Android E24 Hermes/"),
         "description": "E24 Android app",
         "examples": ["Android E24 Hermes/1000094692 _app_"],
     },
     {
         "name": "E24 iOS app",
-        "pattern": "iOS E24 Hermes/",
+        "pattern": re.compile("iOS E24 Hermes/"),
         "description": "E24 iOS app",
         "examples": [
             "AppleCoreMedia/1.0.0.19E239 (iPhone; U; CPU OS 15_4 like Mac OS X; sv_se) iOS E24 Hermes/90.0.0 _app_"
@@ -614,7 +616,7 @@ apps = [
     {"name": "EasyGet", "pattern": "^EasyGet/", "examples": ["EasyGet/1.0.70 CFNetwork/672.1.13 Darwin/14.0.0"]},
     {
         "name": "Economist Espresso",
-        "pattern": "^TheEconomist-Darwin-",
+        "pattern": re.compile("^TheEconomist-Darwin-"),
         "examples": [
             "TheEconomist-Darwin-android-2.1.1-master-2999-2001024",
             "TheEconomist-Darwin-ios-2.1.1-master-2999-2001024",
@@ -622,12 +624,12 @@ apps = [
     },
     {
         "name": "Elevation Health",
-        "pattern": "^Elevation_Health/",
+        "pattern": re.compile("^Elevation_Health/"),
         "examples": ["Elevation_Health/2.9 CFNetwork/672.1.14 Darwin/14.0.0"],
     },
     {
         "name": "EMAudioPlayer",
-        "pattern": "^EMAudioPlayer ",
+        "pattern": re.compile("^EMAudioPlayer "),
         "examples": ["EMAudioPlayer 2.9.7 (720) / Android 6.0.1 / MotoG3"],
     },
     {"name": "Encounter", "pattern": "^Encounter/", "examples": ["Encounter/1 CFNetwork/711.3.18 Darwin/14.0.0"]},
@@ -637,13 +639,13 @@ apps = [
     {"name": "Expo", "pattern": "^Expo/", "examples": ["Expo/2.11.1.106175 CFNetwork/976 Darwin/18.2.0"]},
     {
         "name": "ExtDownloader",
-        "pattern": "^ExtDownloader/",
+        "pattern": re.compile("^ExtDownloader/"),
         "examples": ["ExtDownloader/5.0.2 CFNetwork/758.2.8 Darwin/15.0.0"],
     },
     {"name": "ExtraCloud", "pattern": "^ExtraCloud/", "examples": ["ExtraCloud/1.3 CFNetwork/758.2.8 Darwin/15.0.0"]},
     {
         "name": "Facebook",
-        "pattern": "(iPhone|iPad).* \\[FBAN|iOS/Facebook|^FB4A/Facebook|^facebook-mobile/|^Facebook/|^\\[FBAN/",
+        "pattern": re.compile("(iPhone|iPad).* \\[FBAN|iOS/Facebook|^FB4A/Facebook|^facebook-mobile/|^Facebook/|^\\[FBAN/"),
         "examples": [
             "Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_8 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 [FBAN/FBIOS;FBDV/iPhone7,2;FBMD/iPhone;FBSN/iOS;FBSV/12.4.8;FBSS/2;FBID/phone;FBLC/de_DE;FBOP/5]",
             "iOS/Facebook",
@@ -657,33 +659,33 @@ apps = [
     },
     {
         "name": "FaithPlay",
-        "pattern": "^FaithPlay FaithPlay/",
+        "pattern": re.compile("^FaithPlay FaithPlay/"),
         "examples": ["FaithPlay FaithPlay/1.1.5 CFNetwork/1107.1 Darwin/19.0.0"],
     },
     {"name": "Fallound", "pattern": "^Fallound/", "examples": ["Fallound/16 CFNetwork/975.0.3 Darwin/18.2.0"]},
     {"name": "FancyMusic", "pattern": "^FancyMusic/", "examples": ["FancyMusic/2 CFNetwork/758.1.6 Darwin/15.0.0"]},
     {
         "name": "Fathom",
-        "pattern": "^Fathom/",
+        "pattern": re.compile("^Fathom/"),
         "examples": ["Fathom/5 CFNetwork/1406.0.2 Darwin/22.4.0"],
         "urls": ["https://fathom.fm"],
     },
     {"name": "Feeder", "pattern": "^Feeder/", "examples": ["Feeder/2785 CFNetwork/720.5.7 Darwin/14.5.0 (x86_64)"]},
     {
         "name": "Feedly",
-        "pattern": "^feedly/",
+        "pattern": re.compile("^feedly/"),
         "description": "An RSS reader",
         "examples": ["feedly/81.0.1 CFNetwork/1206 Darwin/20.1.0"],
     },
     {
         "name": "FeedStation",
-        "pattern": "^FeedStation/\\d",
+        "pattern": re.compile("^FeedStation/\\d"),
         "urls": ["https://download.cnet.com/FeedStation/3000-2164_4-10699428.html"],
         "examples": ["FeedStation/4.5 (http://www.newsgator.com/; Microsoft Windows)"],
     },
     {
         "name": "Fellowship Bible Church Topeka",
-        "pattern": "^Fellowship Bible Church Topeka/",
+        "pattern": re.compile("^Fellowship Bible Church Topeka/"),
         "examples": ["Fellowship Bible Church Topeka/4.9.2 CFNetwork/811.5.4 Darwin/16.7.0"],
     },
     {"name": "Filebox", "pattern": "^Filebox/", "examples": ["Filebox/2.7.3 CFNetwork/811.4.18 Darwin/16.5.0"]},
@@ -695,18 +697,18 @@ apps = [
     {"name": "Flash", "pattern": "(^MAC |^WIN )"},
     {
         "name": "folkebladet.no",
-        "pattern": "^folkebladet\\.no/",
+        "pattern": re.compile("^folkebladet\\.no/"),
         "examples": ["folkebladet.no/252 CFNetwork/811.5.4 Darwin/16.7.0"],
     },
     {
         "name": "foobar2000",
-        "pattern": "^foobar2000/",
+        "pattern": re.compile("^foobar2000/"),
         "urls": ["https://www.foobar2000.org/"],
         "examples": ["foobar2000/1.x"],
     },
     {
         "name": "Fountain",
-        "pattern": "^Fountain|^fountainapp/\\d",
+        "pattern": re.compile("^Fountain|^fountainapp/\\d"),
         "urls": ["https://www.fountain.fm"],
         "examples": [
             "Fountain/0.2.6 iOS https://www.fountain.fm'",
@@ -718,29 +720,29 @@ apps = [
     },
     {
         "name": "Free Download Manager",
-        "pattern": "^FDM/|^FDM \\d",
+        "pattern": re.compile("^FDM/|^FDM \\d"),
         "examples": ["FDM/5.1.38.7312", "FDM 3.x"],
         "urls": ["https://www.freedownloadmanager.org/download.htm"],
     },
     {
         "name": "FreeMP3MusicDownload",
-        "pattern": "^FreeMP3MusicDownload/",
+        "pattern": re.compile("^FreeMP3MusicDownload/"),
         "examples": ["FreeMP3MusicDownload/1.5 CFNetwork/609.1.4 Darwin/13.0.0"],
     },
     {"name": "freemusic", "pattern": "^freemusic/", "examples": ["freemusic/2.3 CFNetwork/609 Darwin/13.0.0"]},
     {
         "name": "FreeMusicDownloadPro",
-        "pattern": "^FreeMusicDownloadPro/",
+        "pattern": re.compile("^FreeMusicDownloadPro/"),
         "examples": ["FreeMusicDownloadPro/1.8 CFNetwork/711.1.16 Darwin/14.0.0"],
     },
     {
         "name": "FreeMusicPlusFree",
-        "pattern": "^FreeMusicPlusFree/",
+        "pattern": re.compile("^FreeMusicPlusFree/"),
         "examples": ["FreeMusicPlusFree/2.5 CFNetwork/609.1.4 Darwin/13.0.0"],
     },
     {
         "name": "Gaana",
-        "pattern": "^GaanaAndroid-|^Gaana-iOS|^Gaana/",
+        "pattern": re.compile("^GaanaAndroid-|^Gaana-iOS|^Gaana/"),
         "examples": [
             "GaanaAndroid-8.13.0/Dalvik/2.1.0 (Linux; U; Android 9; vivo 1906 Build/PKQ1.190616.001)",
             "GaanaAndroid-8.13.0/Dalvik/2.1.0 (Linux; U; Android 5.1; Micromax P701 Build/LMY47D)",
@@ -750,13 +752,13 @@ apps = [
     },
     {
         "name": "Garmin fenix 5X",
-        "pattern": "^Garmin fenix 5X Plus",
+        "pattern": re.compile("^Garmin fenix 5X Plus"),
         "comments": "This uses Spotify to transfer audio to compatible watches",
         "examples": ["Garmin fenix 5X Plus/18.0"],
     },
     {
         "name": "Garmin Forerunner",
-        "pattern": "^Garmin Forerunner",
+        "pattern": re.compile("^Garmin Forerunner"),
         "comments": "This uses Spotify to transfer audio to compatible watches",
         "examples": ["Garmin Forerunner 245 Music/11.60"],
     },
@@ -766,13 +768,13 @@ apps = [
     {"name": "Gold", "pattern": "^Gold/", "examples": ["Gold/1528207522 CFNetwork/902.2 Darwin/17.7.0"]},
     {
         "name": "GoldenPod",
-        "pattern": "^GoldenPod/",
+        "pattern": re.compile("^GoldenPod/"),
         "examples": ["GoldenPod/0.8.4 (GNU/Linux; podcatcher; Using LWP) libwwwperl"],
     },
     {"name": "GoLoud", "pattern": "^GoLoud/", "examples": ["GoLoud/1092 CFNetwork/978.0.7 Darwin/18.6.0"]},
     {
         "name": "Goodpods",
-        "pattern": "Goodpods\\.|^[Gg]oodpods/",
+        "pattern": re.compile("Goodpods\\.|^[Gg]oodpods/"),
         "description": "The social podcasting app",
         "svg": "goodpods.svg",
         "urls": ["https://www.goodpods.com/"],
@@ -787,7 +789,7 @@ apps = [
     },
     {
         "name": "GoodReader",
-        "pattern": "^GoodReader(4|IPad)?/",
+        "pattern": re.compile("^GoodReader(4|IPad)?/"),
         "examples": [
             "GoodReader/3.17.1 CFNetwork/548.1.4 Darwin/11.0.0",
             "GoodReader4/100 CFNetwork/711.3.18 Darwin/14.0.0",
@@ -796,14 +798,14 @@ apps = [
     },
     {
         "name": "Google Assistant",
-        "pattern": "^Google-Speech-Actions",
+        "pattern": re.compile("^Google-Speech-Actions"),
         "urls": ["https://cloud.google.com/text-to-speech/docs/ssml"],
         "comments": "This is audio downloaded as a result of a Google Assistant voice action. It's unlikely to appear in podcast host logs, since voice actions can only use up to 120 seconds of audio.",
     },
     {"name": "Google Nest Hub", "pattern": "(Fuchsia).* CrKey/"},
     {
         "name": "Google Podcasts",
-        "pattern": "(GoogleChirp|^GooglePodcasts/|^Podcasts$|GSA/)",
+        "pattern": re.compile("(GoogleChirp|^GooglePodcasts/|^Podcasts$|GSA/)"),
         "examples": [
             "GooglePodcasts/2.0.2 iPod_touch/13.4.1 hw/iPod9_1",
             "GooglePodcasts/2.0.10 iPhone/14.6 hw/iPhone12_1",
@@ -818,7 +820,7 @@ apps = [
     },
     {
         "name": "gPodder",
-        "pattern": "^gPodder/|^gpodder\\.net|gpodder",
+        "pattern": re.compile("^gPodder/|^gpodder\\.net|gpodder"),
         "urls": ["http://gpodder.org/"],
         "examples": [
             "gPodder/3.10.8 (+http://gpodder.org/) Windows/10",
@@ -832,29 +834,29 @@ apps = [
     },
     {
         "name": "Grace Community Church - Texas",
-        "pattern": "^Grace%20Community%20Church%20-%20Texas/",
+        "pattern": re.compile("^Grace%20Community%20Church%20-%20Texas/"),
         "examples": ["Grace%20Community%20Church%20-%20Texas/4.4.0 CFNetwork/672.1.15 Darwin/14.0.0"],
     },
     {
         "name": "Grace Evangelical Covenant Church",
-        "pattern": "^Grace%20Evangelical%20Covenant%20Church/",
+        "pattern": re.compile("^Grace%20Evangelical%20Covenant%20Church/"),
         "examples": ["Grace%20Evangelical%20Covenant%20Church/4.9.2 CFNetwork/893.14.2 Darwin/17.3.0"],
     },
     {"name": "Gretale", "pattern": "^Gretale/", "examples": ["Gretale/207 CFNetwork/978.0.7 Darwin/18.7.0"]},
     {"name": "GroupMe", "pattern": "^GroupMe/", "examples": ["GroupMe/5.33.1.1 CFNetwork/1098.7 Darwin/19.0.0"]},
     {
         "name": "Guardian",
-        "pattern": "^Guardian-iOSLive/|GuardianAndroidApp/|^Guardian Podcast",
+        "pattern": re.compile("^Guardian-iOSLive/|GuardianAndroidApp/|^Guardian Podcast"),
         "examples": ["Guardian Podcast-2018.10.14"],
     },
     {
         "name": "Guacamole",
-        "pattern": "^Guacamole/",
+        "pattern": re.compile("^Guacamole/"),
         "examples": ["Guacamole/1528207522 CFNetwork/811.5.4 Darwin/16.7.0"],
     },
     {
         "name": "GrabRadioWorld",
-        "pattern": "^GrabRadioWorld/",
+        "pattern": re.compile("^GrabRadioWorld/"),
         "examples": ["GrabRadioWorld/3.9 CFNetwork/758.2.8 Darwin/15.0.0"],
     },
     {"name": "HalfTunes", "pattern": "^HalfTunes/", "examples": ["HalfTunes/7 CFNetwork/893.14 Darwin/16.7.0"]},
@@ -862,14 +864,14 @@ apps = [
     {"name": "HardCast", "pattern": "^HardCast/", "examples": ["HardCast/11 CFNetwork/978.0.7 Darwin/18.7.0"]},
     {
         "name": "Hark Audio",
-        "pattern": "^Hark/",
+        "pattern": re.compile("^Hark/"),
         "urls": ["https://harkaudio.com/"],
         "examples": ["Hark/10678 CFNetwork/1335.0.3 Darwin/21.6.0"],
     },
     {"name": "Heart", "pattern": "^Heart/", "examples": ["Heart/1528207522 CFNetwork/897.15 Darwin/17.5.0"]},
     {
         "name": "HermesPod",
-        "pattern": "hermespod\\.com/",
+        "pattern": re.compile("hermespod\\.com/"),
         "description": "HermesPod is the easiest way to subscribe, download and listen to podcasts. It's a Windows app.",
         "urls": ["http://hermespod.com/"],
         "comments": "HermesPod is no longer supported by its author.",
@@ -879,7 +881,7 @@ apps = [
     {"name": "Highly", "pattern": "^Highly/", "examples": ["Highly/914 CFNetwork/758.5.3 Darwin/15.6.0"]},
     {
         "name": "Himalaya",
-        "pattern": "^Himalaya(_test)?/",
+        "pattern": re.compile("^Himalaya(_test)?/"),
         "description": "Himalaya is a podcast app",
         "examples": [
             "Himalaya/2.4.41 (iPhone; iOS 14.0.1; Scale/3.00; CFNetwork; iPhone9,4)",
@@ -890,7 +892,7 @@ apps = [
     },
     {
         "name": "HopeChurchCleburne",
-        "pattern": "^HopeChurchCleburne/",
+        "pattern": re.compile("^HopeChurchCleburne/"),
         "examples": ["HopeChurchCleburne/3 CFNetwork/974.2.1 Darwin/18.0.0"],
     },
     {"name": "Horse Radio Network", "pattern": "^HRN/", "examples": ["HRN/1900 CFNetwork/1107.1 Darwin/19.0.0"]},
@@ -898,20 +900,20 @@ apps = [
     {"name": "Hyper", "pattern": "^Hyper/", "examples": ["Hyper/3 CFNetwork/893.14.2 Darwin/17.3.0"]},
     {
         "name": "HyperCatcher",
-        "pattern": "^HyperCatcher",
+        "pattern": re.compile("^HyperCatcher"),
         "description": "Newsletters and podcasts together!",
         "examples": ["HyperCatcher/1"],
     },
     {"name": "iBuilder", "pattern": "^iBuilder/", "examples": ["iBuilder/1 CFNetwork/548.1.4 Darwin/11.0.0"]},
     {
         "name": "iCatcher",
-        "pattern": "^i[Cc]atcher|\\(iCatcher",
+        "pattern": re.compile("^i[Cc]atcher|\\(iCatcher"),
         "examples": ["icatcher/4506 CFNetwork/609.1.4 Darwin/13.0.0", "iTunes (iCatcher!/2.6.3)"],
     },
     {"name": "iDL", "pattern": "^iDL/", "examples": ["iDL/122 CFNetwork/811.5.4 Darwin/16.7.0"]},
     {
         "name": "iDownloader",
-        "pattern": "IDownloaderApps4StarsFree/|^IDownloaderFree_Apps4Stars/|^iDownloader",
+        "pattern": re.compile("IDownloaderApps4StarsFree/|^IDownloaderFree_Apps4Stars/|^iDownloader"),
         "examples": [
             'IDownloaderApps4StarsFree" "IDownloaderApps4StarsFree/1.0.107 CFNetwork/672.1.14 Darwin/14.0.0',
             "IDownloaderFree_Apps4Stars/1.10.108 CFNetwork/672.1.15 Darwin/14.0.0",
@@ -921,20 +923,20 @@ apps = [
     },
     {
         "name": "iDownloadsAppPlus",
-        "pattern": "^iDownloadsAppPlus/",
+        "pattern": re.compile("^iDownloadsAppPlus/"),
         "examples": ["iDownloadsAppPlus/1.6.4 CFNetwork/672.0.8 Darwin/14.0.0"],
     },
     {"name": "iFeedTouch", "pattern": "^iFeedTouch/", "examples": ["iFeedTouch/1.02 CFNetwork/811.5.4 Darwin/16.7.0"]},
     {
         "name": "Iframely",
-        "pattern": "Iframely/",
+        "pattern": re.compile("Iframely/"),
         "urls": ["https://iframely.com/docs/about"],
         "examples": ["Iframely/1.3.1 (+https://iframely.com/docs/about)"],
     },
     {"name": "IFTTT", "pattern": "^IFTTT/", "examples": ["IFTTT/550 CFNetwork/758.5.3 Darwin/15.6.0"]},
     {
         "name": "iHeartRadio",
-        "pattern": "^iHeartRadio/|^iHeartPodcasts/",
+        "pattern": re.compile("^iHeartRadio/|^iHeartPodcasts/"),
         "urls": [
             "https://play.google.com/store/apps/details?id=com.clearchannel.iheartradio.controller",
             "https://apps.apple.com/us/app/iheart-radio-music-podcasts/id290638154",
@@ -953,7 +955,7 @@ apps = [
     {"name": "InCast", "pattern": "^InCast/", "examples": ["InCast/3443 CFNetwork/711.0.6 Darwin/14.0.0"]},
     {
         "name": "Instacast",
-        "pattern": "^Instacast Instacast/|^Instacast/",
+        "pattern": re.compile("^Instacast Instacast/|^Instacast/"),
         "examples": [
             "Instacast Instacast/4.5.4 CFNetwork/672.1.14 Darwin/14.0.0",
             "Instacast/2763 CFNetwork/1335.0.3 Darwin/21.6.0",
@@ -961,7 +963,7 @@ apps = [
     },
     {
         "name": "Instagram",
-        "pattern": "^Instagram/|Mobile/.* Instagram",
+        "pattern": re.compile("^Instagram/|Mobile/.* Instagram"),
         "examples": [
             "Instagram/252729634 CFNetwork/1126 Darwin/19.5.0",
             "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 108.0.0.9.119 (iPhone9,3; iOS 12_3_1; en_IN; en-IN; scale=2.00; 750x1334; 168879348)",
@@ -969,12 +971,12 @@ apps = [
     },
     {
         "name": "iOnGreenville",
-        "pattern": "^iOnGreenville/",
+        "pattern": re.compile("^iOnGreenville/"),
         "examples": ["iOnGreenville/1 CFNetwork/978.0.7 Darwin/18.7.0"],
     },
     {
         "name": "IOSAudiobooks",
-        "pattern": "^IOSAudiobooks/",
+        "pattern": re.compile("^IOSAudiobooks/"),
         "examples": ["IOSAudiobooks/7.4.1.1 CFNetwork/978.0.7 Darwin/18.7.0"],
     },
     {"name": "IPF", "pattern": "^IPF/", "examples": ["IPF/1 CFNetwork/901.1 Darwin/17.6.0"]},
@@ -982,7 +984,7 @@ apps = [
     {"name": "isitgood", "pattern": "^isitgood/", "examples": ["isitgood/246 CFNetwork/978.0.7 Darwin/18.6.0"]},
     {
         "name": "iTunes",
-        "pattern": "^iTunesU?[/-]",
+        "pattern": re.compile("^iTunesU?[/-]"),
         "urls": ["https://www.apple.com/itunes/"],
         "examples": [
             "iTunes/10.6.3 (Macintosh; Intel Mac OS X 10.5.8) AppleWebKit/534.50.2",
@@ -994,7 +996,7 @@ apps = [
     },
     {
         "name": "iVoox",
-        "pattern": "^[iI][Vv]oox",
+        "pattern": re.compile("^[iI][Vv]oox"),
         "urls": ["https://www.ivoox.com/"],
         "examples": [
             "iVooxApp/3.85 (iPhone; iOS; iOS 15.6.1; d:16910714; 113F)",
@@ -1007,7 +1009,7 @@ apps = [
     {"name": "Jimcast", "pattern": "^Jimcast/", "examples": ["Jimcast/1.0 CFNetwork/672.1.15 Darwin/14.0.0"]},
     {
         "name": "JioSaavn",
-        "pattern": "(^com\\.jio\\.media\\.jiobeats|^com\\.saavn\\.android|^[sS]aavn)",
+        "pattern": re.compile("(^com\\.jio\\.media\\.jiobeats|^com\\.saavn\\.android|^[sS]aavn)"),
         "description": "A music streaming and podcast app from India. Earn Your Happy!",
         "urls": ["https://www.jiosaavn.com/"],
         "comments": "The user-agent will start with one of the above strings followed by the app version and player version.",
@@ -1015,7 +1017,7 @@ apps = [
     },
     {
         "name": "JRiver Media Center",
-        "pattern": "J\\. River Internet Reader",
+        "pattern": re.compile("J\\. River Internet Reader"),
         "urls": ["https://www.jriver.com/"],
         "examples": [
             "Microsoft-Windows-XP/2002, UPnP/1.1, J. River Internet Reader/2.0 (compatible; Windows-Media-Player/10)"
@@ -1024,12 +1026,12 @@ apps = [
     {"name": "Juice", "pattern": "^Juice/", "examples": ["Juice/2.2 (Darwin) +http://juicereceiver.sf.net/"]},
     {
         "name": "Just Audio",
-        "pattern": "just_audio/",
+        "pattern": re.compile("just_audio/"),
         "examples": ["just_audio/3.6.2 (Linux;Android 9) ExoPlayerLib/2.13.1"],
     },
     {
         "name": "Kajabi",
-        "pattern": " Kajabi|KajabiPodcast",
+        "pattern": re.compile(" Kajabi|KajabiPodcast"),
         "examples": [
             "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 KajabiMobileApp",
             "KajabiPodcast",
@@ -1037,24 +1039,24 @@ apps = [
     },
     {
         "name": "KakaoTalk",
-        "pattern": "^KakaoTalk/",
+        "pattern": re.compile("^KakaoTalk/"),
         "examples": ["KakaoTalk/2019.10.30.1 CFNetwork/1120 Darwin/19.0.0"],
     },
     {
         "name": "KaoticRadio.com",
-        "pattern": "^KaoticRadio\\.com/",
+        "pattern": re.compile("^KaoticRadio\\.com/"),
         "examples": ["KaoticRadio.com/1.56.67.564 CFNetwork/672.1.15 Darwin/14.0.0"],
     },
     {
         "name": "Kasts",
-        "pattern": "^Kasts/",
+        "pattern": re.compile("^Kasts/"),
         "examples": ["Kasts/22.09; Syndication"],
         "urls": ["https://apps.kde.org/kasts/"],
         "description": "Kasts is a convergent podcast application that looks good on desktop and mobile.",
     },
     {
         "name": "Kids Listen",
-        "pattern": "^Kids(%20| )Listen/",
+        "pattern": re.compile("^Kids(%20| )Listen/"),
         "examples": [
             "Kids%20Listen/55 CFNetwork/1107.1 Darwin/19.0.0",
             "Kids Listen/55 CFNetwork/1107.1 Darwin/19.0.0",
@@ -1065,7 +1067,7 @@ apps = [
     {"name": "Knomad", "pattern": "^Knomad/", "examples": ["Knomad/1.1.9 CFNetwork/711.1.12 Darwin/14.0.0"]},
     {
         "name": "Kodi",
-        "pattern": "^Kodi/",
+        "pattern": re.compile("^Kodi/"),
         "examples": [
             "Kodi/15.2 (Linux; Android 5.1; QM152E Build/LMY47D) Android/5.1.0 Sys_CPU/armv7l App_Bitness/32 Version/15.2-Git:2015-10-27-17fa8da"
         ],
@@ -1074,14 +1076,14 @@ apps = [
     {"name": "labs", "pattern": "^labs/", "examples": ["labs/0.1.1.5 CFNetwork/711.2.23 Darwin/14.0.0"]},
     {
         "name": "Laughable",
-        "pattern": "^Laughable.+iOS|^Laughable/",
+        "pattern": re.compile("^Laughable.+iOS|^Laughable/"),
         "examples": ["Laughable/2.1.6.1 CFNetwork/808.1.4 Darwin/16.1.0"],
     },
     {"name": "LBC", "pattern": "^LBC/", "examples": ["LBC/1544724632 CFNetwork/811.5.4 Darwin/16.7.0"]},
     {"name": "Leaf", "pattern": "^Leaf/", "examples": ["Leaf/12 CFNetwork/720.0.9 Darwin/14.0.0 (x86_64)"]},
     {
         "name": "Les Indés Radios",
-        "pattern": "(^lesindesradios$|^lesindesradios/)",
+        "pattern": re.compile("(^lesindesradios$|^lesindesradios/)"),
         "description": "Les Indés Radios is a radio app, available on multiple devices and OSs",
         "urls": ["https://www.lesindesradios.fr/"],
         "examples": [
@@ -1093,7 +1095,7 @@ apps = [
     {"name": "LG Player", "pattern": "LG Player"},
     {
         "name": "LifeEssentials",
-        "pattern": "^Life(%20)?Essentials(App)?/",
+        "pattern": re.compile("^Life(%20)?Essentials(App)?/"),
         "examples": [
             "LifeEssentials/1.0 CFNetwork/758.0.2 Darwin/15.0.0",
             "LifeEssentialsApp/2.1.0 CFNetwork/758.5.3 Darwin/15.6.0",
@@ -1102,12 +1104,12 @@ apps = [
     },
     {
         "name": "lifegateburleson",
-        "pattern": "^lifegateburleson/",
+        "pattern": re.compile("^lifegateburleson/"),
         "examples": ["lifegateburleson/10 CFNetwork/672.1.15 Darwin/14.0.0"],
     },
     {
         "name": "LinkedIn",
-        "pattern": "iPhone.+\\[LinkedInApp\\]|^LinkedIn/",
+        "pattern": re.compile("iPhone.+\\[LinkedInApp\\]|^LinkedIn/"),
         "description": "The LinkedIn app's built-in browser on iPhones.",
         "examples": [
             "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 [LinkedInApp]",
@@ -1116,14 +1118,14 @@ apps = [
     },
     {
         "name": "Lisny",
-        "pattern": "Lisny",
+        "pattern": re.compile("Lisny"),
         "description": "Lisny is a fast, beautiful and fun listening experience.",
         "urls": ["https://www.lisny.com"],
         "examples": ["Lisny"],
     },
     {
         "name": "Listen",
-        "pattern": "^Listen(( |%20)App)?/",
+        "pattern": re.compile("^Listen(( |%20)App)?/"),
         "examples": [
             "Listen/1 CFNetwork/1107.1 Darwin/19.0.0",
             "Listen App/84 CFNetwork/1240.0.4 Darwin/20.6.0",
@@ -1133,12 +1135,12 @@ apps = [
     {"name": "Listen5", "pattern": "Listen5"},
     {
         "name": "Livio Radio",
-        "pattern": "^Livio Radio/",
+        "pattern": re.compile("^Livio Radio/"),
         "examples": ["Livio Radio/2.6.2 CFNetwork/609.1.4 Darwin/13.0.0"],
     },
     {
         "name": "Luminary",
-        "pattern": "^Luminary(Preprod)?/|^luminary\\.next/",
+        "pattern": re.compile("^Luminary(Preprod)?/|^luminary\\.next/"),
         "examples": [
             "LuminaryPreprod/27 CFNetwork/976 Darwin/18.2.0",
             "luminary.next/1.25 (Linux;Android 9) ExoPlayerLib/2.10.5",
@@ -1146,14 +1148,14 @@ apps = [
     },
     {
         "name": "MacJournal",
-        "pattern": "^MacJournal/",
+        "pattern": re.compile("^MacJournal/"),
         "examples": ["MacJournal/6.2.1 CFNetwork/811.5.4 Darwin/16.7.0 (x86_64)"],
     },
     {"name": "Majelan", "pattern": "^MajelanApp"},
     {"name": "MaxTubePro", "pattern": "^MaxTubePro/", "examples": ["MaxTubePro/1.5 CFNetwork/711.1.16 Darwin/14.0.0"]},
     {
         "name": "Meadowbrook Church",
-        "pattern": "^Meadowbrook Church/",
+        "pattern": re.compile("^Meadowbrook Church/"),
         "examples": ["Meadowbrook Church/4.10.2 CFNetwork/978.0.7 Darwin/18.6.0"],
     },
     {"name": "MediaMonkey", "pattern": "^MediaMonkey"},
@@ -1161,18 +1163,18 @@ apps = [
     {"name": "Megaphone", "pattern": "^Megaphone\\.fm", "examples": ["Megaphone.fm"]},
     {
         "name": "Menucast",
-        "pattern": "^Menucast/",
+        "pattern": re.compile("^Menucast/"),
         "examples": ["Menucast/1.4 CFNetwork/720.1.1 Darwin/14.0.0 (x86_64)"],
     },
     {
         "name": "Message+",
-        "pattern": "^Message\\+/",
+        "pattern": re.compile("^Message\\+/"),
         "examples": ["Message+/2.4.7 CFNetwork/811.5.4 Darwin/16.7.0 (x86_64)"],
     },
     {"name": "Messenger", "pattern": "^Messenger/", "examples": ["Messenger/168725151 CFNetwork/1107.1 Darwin/19.0.0"]},
     {
         "name": "Microsoft Xbox",
-        "pattern": "^microsoft;xbox_",
+        "pattern": re.compile("^microsoft;xbox_"),
         "examples": [
             "microsoft;xbox_one;1fc2d01aa9074dde950e8d3dc0eb1729;;tpapi;3.167.55",
             "microsoft;xbox_series_x;1fc2d01aa9074dde950e8d3dc0eb1729;;tpapi;3.167.55 Dynamo/1.0",
@@ -1181,18 +1183,18 @@ apps = [
     {"name": "Mimir", "pattern": "^Mimir/", "examples": ["Mimir/1 CFNetwork/1098 Darwin/19.0.0 (x86_64)"]},
     {
         "name": "Miro",
-        "pattern": "^Miro/.+Windows",
+        "pattern": re.compile("^Miro/.+Windows"),
         "urls": ["http://www.getmiro.com/"],
         "examples": ["Miro/6.0 (http://www.getmiro.com/; Windows post2008Server x86)"],
     },
     {
         "name": "Mixcloud",
-        "pattern": "^Mixcloud/",
+        "pattern": re.compile("^Mixcloud/"),
         "examples": ["Mixcloud/22.2.5 (Linux;Android 6.0.1) ExoPlayerLib/2.10.4"],
     },
     {
         "name": "MixerBox",
-        "pattern": "^MixerBox/",
+        "pattern": re.compile("^MixerBox/"),
         "urls": ["https://www.mixerbox.com/"],
         "examples": [
             "MixerBox/12.33 (Linux;Android 11) ExoPlayerLib/2.11.1",
@@ -1204,19 +1206,19 @@ apps = [
     {"name": "MobileSMS", "pattern": "^MobileSMS/", "examples": ["MobileSMS/1.0 CFNetwork/1107.1 Darwin/19.0.0"]},
     {
         "name": "MoonFM",
-        "pattern": "^Moon ?FM/",
+        "pattern": re.compile("^Moon ?FM/"),
         "examples": ["MoonFM/128 CFNetwork/978.0.7 Darwin/18.7.0", "Moon FM/4.0.33"],
     },
     {"name": "mpv", "pattern": "^mpv 0\\.|^libmpv$", "urls": ["https://mpv.io/"], "examples": ["libmpv"]},
     {"name": "MusicBee", "pattern": "^MusicBee", "urls": ["https://getmusicbee.com/"], "examples": ["MusicBee"]},
     {
         "name": "Music Download App",
-        "pattern": "^Music%20Download/",
+        "pattern": re.compile("^Music%20Download/"),
         "examples": ["Music%20Download/45 CFNetwork/978.0.7 Darwin/18.7.0"],
     },
     {
         "name": "MyTuner",
-        "pattern": "^myTuner Radio app/|^myTuner%20Radio%20app/|^mytuner_podcasts_androidplayer/|^MyTuner-|^myTuner$|^myTuneriOS%20Free/",
+        "pattern": re.compile("^myTuner Radio app/|^myTuner%20Radio%20app/|^mytuner_podcasts_androidplayer/|^MyTuner-|^myTuner$|^myTuneriOS%20Free/"),
         "examples": [
             "myTuner Radio app/11 CFNetwork/978.0.7 Darwin/18.7.0",
             "myTuner%20Radio%20app/11 CFNetwork/978.0.7 Darwin/18.7.0",
@@ -1229,19 +1231,19 @@ apps = [
     {"name": "Newsboat", "pattern": "^Newsboat/", "examples": ["Newsboat/2.29.0 (Linux x86_64)"]},
     {
         "name": "Newsly",
-        "pattern": "^Newsly",
+        "pattern": re.compile("^Newsly"),
         "description": "Stop Scrolling, Start Listening.",
         "urls": ["https://www.newsly.me/"],
         "examples": ["Newsly"],
     },
     {
         "name": "NPR One",
-        "pattern": "(^NPR%20One/|^NPROneAndroid)",
+        "pattern": re.compile("(^NPR%20One/|^NPROneAndroid)"),
         "examples": ["NPR%20One/234 CFNetwork/1197 Darwin/20.0.0", "NPROneAndroid"],
     },
     {
         "name": "NRC Audio",
-        "pattern": "NRC Audio/.*Android",
+        "pattern": re.compile("NRC Audio/.*Android"),
         "description": "NRC Audio",
         "examples": [
             "NRC Audio/2.0.0 (nl.nrc.audio; build:29; Android 12; Sdk:31; Manufacturer:samsung; Model: SM-G975F) OkHttp/4.9.3"
@@ -1249,12 +1251,12 @@ apps = [
     },
     {
         "name": "Outcast",
-        "pattern": "^Outcast[/ ]",
+        "pattern": re.compile("^Outcast[/ ]"),
         "examples": ["Outcast/1957 CFNetwork/889.7 Darwin/17.2.0", "Outcast 3.1.6"],
     },
     {
         "name": "Overcast",
-        "pattern": "^Overcast/|^Overcast.*Apple Watch",
+        "pattern": re.compile("^Overcast/|^Overcast.*Apple Watch"),
         "examples": [
             "Overcast/3.0 (+http://overcast.fm/; iOS podcast app)",
             "Overcast ( http://overcast.fm/; Apple Watch podcast app)",
@@ -1263,13 +1265,13 @@ apps = [
     },
     {
         "name": "Palco MP3",
-        "pattern": "^Palco MP3",
+        "pattern": re.compile("^Palco MP3"),
         "urls": ["https://www.palcomp3.com.br/"],
         "examples": ["Palco MP3/3.13.18 (Linux;Android 11) ExoPlayerLib/2.11.0"],
     },
     {
         "name": "Pandora",
-        "pattern": "(^Pandora.+Android| Pandora/)",
+        "pattern": re.compile("(^Pandora.+Android| Pandora/)"),
         "examples": [
             "Pandora/2009.2 Android/7.1.1 gteslteatt (ExoPlayerLib1.5.14.1)",
             "Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Pandora/2009.2",
@@ -1278,20 +1280,20 @@ apps = [
     },
     {
         "name": "Parler",
-        "pattern": "^Parler( Staging)?/",
+        "pattern": re.compile("^Parler( Staging)?/"),
         "examples": ["Parler Staging/542 CFNetwork/978.0.7 Darwin/18.7.0"],
     },
     {"name": "PeaCast", "pattern": "^PeaCast/", "examples": ["PeaCast/0.7"]},
     {
         "name": "Playapod",
-        "pattern": "^Playapod",
+        "pattern": re.compile("^Playapod"),
         "description": "Best Cross-Platform Podcast and News App",
         "urls": ["https://playapod.com/"],
         "examples": ["Playapod/2.4.11"],
     },
     {
         "name": "Player FM",
-        "pattern": "^Player FM|^Player%20FM|^Alpha%20PlayerFM/",
+        "pattern": re.compile("^Player FM|^Player%20FM|^Alpha%20PlayerFM/"),
         "examples": [
             "Player%20FM/588 CFNetwork/1121.2.2 Darwin/19.2.0",
             "Alpha%20PlayerFM/108 CFNetwork/808.0.2 Darwin/16.0.0",
@@ -1299,7 +1301,7 @@ apps = [
     },
     {
         "name": "Pocket Casts",
-        "pattern": "^Pocket Casts|^PocketCasts/|^Shifty Jelly Pocket Casts",
+        "pattern": re.compile("^Pocket Casts|^PocketCasts/|^Shifty Jelly Pocket Casts"),
         "description": "A podcast app and web player",
         "svg": "pocketcasts.svg",
         "urls": ["https://www.pocketcasts.com/"],
@@ -1309,7 +1311,7 @@ apps = [
     {"name": "Podbay", "pattern": "^Podbay/", "examples": ["Podbay/21 CFNetwork/1335.0.3 Darwin/21.6.0"]},
     {
         "name": "Podbean",
-        "pattern": "^Podbean/",
+        "pattern": re.compile("^Podbean/"),
         "urls": [
             "https://play.google.com/store/apps/details?id=com.podbean.app.podcast",
             "https://apps.apple.com/us/app/podbean-podcast-app-player/id973361050",
@@ -1323,13 +1325,13 @@ apps = [
     },
     {
         "name": "Podcast Guru",
-        "pattern": "^PodcastGuru",
+        "pattern": re.compile("^PodcastGuru"),
         "description": "Podcast Guru is the simple and free podcast player",
         "urls": ["https://podcastguru.io/"],
     },
     {
         "name": "Podcast Addict",
-        "pattern": "^Podcast.*Addict/|^Podcast Addict ",
+        "pattern": re.compile("^Podcast.*Addict/|^Podcast Addict "),
         "examples": [
             "PodcastAddict/v2 - Dalvik/2.1.0 (Linux; U; Android 9; SM-N950U Build/PPR1.180610.011)",
             "PodcastAddict/v5 ( https://podcastaddict.com/; Android podcast app)",
@@ -1338,33 +1340,33 @@ apps = [
     },
     {
         "name": "Podcast Player",
-        "pattern": "^Podcast Player/",
+        "pattern": re.compile("^Podcast Player/"),
         "examples": ["Podcast Player/1.0 (phone;android RMX3195_11_A.18)"],
     },
     {
         "name": "Podcast Republic",
-        "pattern": "^PodcastRepublic.+Android",
+        "pattern": re.compile("^PodcastRepublic.+Android"),
         "examples": ["PodcastRepublic/18.0 (Linux; U; Android 10;blueline/QP1A.190711.020.C3)"],
     },
     {
         "name": "Podcastly",
-        "pattern": "^Podcastly/|^Podcastly$",
+        "pattern": re.compile("^Podcastly/|^Podcastly$"),
         "examples": ["Podcastly/1.4.1 (samsung; CPU OS android 11; en_us)", "Podcastly"],
     },
     {
         "name": "Podchaser",
-        "pattern": "^Podchaser |^Podchaser-Parser",
+        "pattern": re.compile("^Podchaser |^Podchaser-Parser"),
         "examples": ["Podchaser (https://podchaser.com)", "Podchaser-Parser"],
     },
     {
         "name": "Podclipper",
-        "pattern": "^Podclipper/",
+        "pattern": re.compile("^Podclipper/"),
         "examples": ["Podclipper/4.2 (miguelDSP.Podclipper; build:4; iOS 13.1.3) Alamofire/4.7.3"],
     },
     {"name": "Podcoin", "pattern": "^Podcoin"},
     {
         "name": "PodCruncher",
-        "pattern": "^PodCruncher/.* CFNetwork/",
+        "pattern": re.compile("^PodCruncher/.* CFNetwork/"),
         "urls": ["https://apps.apple.com/us/app/podcruncher-podcast-player/id421894356"],
         "examples": [
             "PodCruncher/3.7.1 CFNetwork/1125.2 Darwin/19.4.0",
@@ -1374,7 +1376,7 @@ apps = [
     {"name": "Podeo", "pattern": "^Podeo/", "examples": ["Podeo/4.2.3 (Linux;Android 12) ExoPlayerLib/2.11.7"]},
     {
         "name": "Podfriend",
-        "pattern": "^Podfriend",
+        "pattern": re.compile("^Podfriend"),
         "description": "Podfriend Electron app",
         "urls": ["https://podfriend.com"],
         "examples": [
@@ -1383,14 +1385,14 @@ apps = [
     },
     {
         "name": "Podhero",
-        "pattern": "^Podhero|^Swoot[/ ]",
+        "pattern": re.compile("^Podhero|^Swoot[/ ]"),
         "description": "Podhero app on iOS and Android.",
         "urls": ["https://podhero.com"],
         "examples": ["Podhero%20Alpha/4373 CFNetwork/1197 Darwin/20.0.0", "Swoot Agent 1.0"],
     },
     {
         "name": "Podimo",
-        "pattern": "^Podimo/",
+        "pattern": re.compile("^Podimo/"),
         "urls": [
             "https://apps.apple.com/dk/app/podimo-a-world-of-podcasts/id1476538730",
             "https://play.google.com/store/apps/details?id=com.podimo&hl=en_US",
@@ -1399,7 +1401,7 @@ apps = [
     },
     {
         "name": "PodKast app",
-        "pattern": ".*PodKast$",
+        "pattern": re.compile(".*PodKast$"),
         "description": "PodKast is a podcast app available for KaiOS smartphones",
         "examples": [
             "Mozilla/5.0 (Mobile; M571M3; rv:48.0) Gecko/48.0 Firefox/48.0 KAIOS/2.5.1.2 PodKast",
@@ -1410,7 +1412,7 @@ apps = [
     {"name": "PodLink", "pattern": "PodLink", "svg": "podlink.svg", "urls": ["https://pod.link/faq/crawler"]},
     {
         "name": "PodLP podcast app for KaiOS",
-        "pattern": ".*PodLP/",
+        "pattern": re.compile(".*PodLP/"),
         "description": "PodLP is the first podcast app available for KaiOS smart feature phones on the KaiStore.",
         "urls": ["https://podlp.com"],
         "comments": "Introduced in version v1.2.0.0 for limited content (downloads); available for all content after v1.3.0.0",
@@ -1420,7 +1422,7 @@ apps = [
     },
     {
         "name": "PodMe",
-        "pattern": "^Podme android app/|^PodMe/",
+        "pattern": re.compile("^Podme android app/|^PodMe/"),
         "examples": [
             "Podme android app/5.1 (Linux;Android 9) ExoPlayerLib/2.11.5",
             "PodMe/10289 CFNetwork/1240.0.4 Darwin/20.6.0",
@@ -1428,7 +1430,7 @@ apps = [
     },
     {
         "name": "PodMN",
-        "pattern": "^PodMN/",
+        "pattern": re.compile("^PodMN/"),
         "description": "Minnesota Podcasts Live Here",
         "svg": "podmn.svg",
         "urls": [
@@ -1443,32 +1445,32 @@ apps = [
     {"name": "PodNL", "pattern": "^PodNL/", "examples": ["PodNL/47 CFNetwork/1107.1 Darwin/19.0.0"]},
     {
         "name": "Podnods",
-        "pattern": "podnods-player",
+        "pattern": re.compile("podnods-player"),
         "description": "Podnods is a podcast discovery site. This user agent is for users to sample and play podcasts.",
         "urls": ["https://podnods.com/about"],
     },
     {
         "name": "Podopolo",
-        "pattern": "^Podopolo|^podopolo/",
+        "pattern": re.compile("^Podopolo|^podopolo/"),
         "description": "Listen with passion - connect with purpose",
         "urls": ["https://podopolo.com/"],
         "examples": ["podopolo/36 CFNetwork/1312 Darwin/20.4.0"],
     },
     {
         "name": "Podplay",
-        "pattern": "^Podplay/",
+        "pattern": re.compile("^Podplay/"),
         "examples": ["Podplay/21.06.23 (Linux;Android 11) ExoPlayerLib/2.13.3"],
     },
     {
         "name": "PodPuppy",
-        "pattern": "felixwatts/PodPuppy",
+        "pattern": re.compile("felixwatts/PodPuppy"),
         "examples": ["PodPuppy 1.0.0.0 github.com/felixwatts/PodPuppy"],
     },
     {"name": "PodQast", "pattern": "^PodQast/", "examples": ["PodQast/2.23 +https://gitlab.com/cy8aer/podqast"]},
     {"name": "Pods", "pattern": "^Pods/", "examples": ["Pods/1 CFNetwork/1312 Darwin/21.0.0"]},
     {
         "name": "Podurama",
-        "pattern": "^Podurama",
+        "pattern": re.compile("^Podurama"),
         "description": "Best free cross-platform podcast app",
         "urls": ["https://podurama.com"],
         "examples": ["Podurama/4.0.8.1 CFNetwork/1390 Darwin/22.0.0"],
@@ -1476,13 +1478,13 @@ apps = [
     {"name": "PodTrapper", "pattern": "^PodTrapper", "examples": ["PodTrapper"]},
     {
         "name": "Podvine",
-        "pattern": "^Podvine/\\d",
+        "pattern": re.compile("^Podvine/\\d"),
         "examples": ["Podvine/3.3.1 (www.podvine.com)"],
         "urls": ["https://podvine.com/"],
     },
     {
         "name": "Podverse",
-        "pattern": "^[Pp]odverse/",
+        "pattern": re.compile("^[Pp]odverse/"),
         "description": "Open source podcast catcher for Android, with clip-sharing, playlists, device syncing and more.",
         "urls": [
             "https://play.google.com/store/apps/details?id=com.podverse&hl=en_US",
@@ -1500,21 +1502,21 @@ apps = [
     },
     {
         "name": "Podyssey",
-        "pattern": "Podyssey App|com\\.toysinboxes\\.Echo|fm\\.podyssey\\.podcasts|^Podyssey",
+        "pattern": re.compile("Podyssey App|com\\.toysinboxes\\.Echo|fm\\.podyssey\\.podcasts|^Podyssey"),
         "description": "Podyssey is a community for people that love podcasts. It's like Goodreads, but for podcasts.",
         "urls": ["https://podyssey.fm"],
         "examples": ["Podyssey"],
     },
     {
         "name": "ProCast",
-        "pattern": "Pro[Cc]ast",
+        "pattern": re.compile("Pro[Cc]ast"),
         "description": "The new generation of Podcast player.",
         "urls": ["https://podcast-app.de/"],
         "examples": ["ProCast/1 CFNetwork/1240.0.4 Darwin/20.6.0"],
     },
     {
         "name": "PugPig Bolt",
-        "pattern": "^PugpigBolt ",
+        "pattern": re.compile("^PugpigBolt "),
         "examples": [
             "PugpigBolt 2.29.3 (iPhone, iOS 16.1.1) on phone (model iPhone12,1)",
             "PugpigBolt 2.14.7 (samsung, Android 12) on phone (model SM-F721U1)",
@@ -1523,25 +1525,25 @@ apps = [
     },
     {
         "name": "radio.de",
-        "pattern": "^radio\\.de/",
+        "pattern": re.compile("^radio\\.de/"),
         "description": "Radio.de is a radio and podcast app in Germany",
         "urls": ["https://www.radio.de/"],
         "examples": ["radio.de/4671 CFNetwork/1121.2.2 Darwin/19.2.0"],
     },
     {
         "name": "Radioline",
-        "pattern": "^Radioline%202/|^Radioline$",
+        "pattern": re.compile("^Radioline%202/|^Radioline$"),
         "examples": ["Radioline%202/5.8.4 CFNetwork/1107.1 Darwin/19.0.0", "Radioline"],
     },
     {
         "name": "RadioPlayer",
-        "pattern": "(^Radioplayer Android app|^Radioplayer iOS app)",
+        "pattern": re.compile("(^Radioplayer Android app|^Radioplayer iOS app)"),
         "description": "Radioplayer is a radio and podcast app, with country-specific versions available in selected countries.",
         "urls": ["http://radioplayer.org"],
     },
     {
         "name": "RadioPublic",
-        "pattern": "^RadioPublic/android-|^RadioPublic Android|RadioPublic iOS|RadioPublic.+CFNetwork|^RadioPublic/iOS|^RadioPublicDraper/",
+        "pattern": re.compile("^RadioPublic/android-|^RadioPublic Android|RadioPublic iOS|RadioPublic.+CFNetwork|^RadioPublic/iOS|^RadioPublicDraper/"),
         "description": "RadioPublic’s free, easy to use podcast player makes listening to podcasts simple, enjoyable, and fun.",
         "svg": "radiopublic.svg",
         "urls": ["https://radiopublic.com/"],
@@ -1553,7 +1555,7 @@ apps = [
     },
     {
         "name": "Repod",
-        "pattern": "(^Repod/.+iOS|^Repod/.+Android)",
+        "pattern": re.compile("(^Repod/.+iOS|^Repod/.+Android)"),
         "description": "Repod is a social podcast app that helps creators engage, montetization, and grow their community.",
         "svg": "repod.svg",
         "urls": ["https://repod.io/"],
@@ -1564,13 +1566,13 @@ apps = [
     },
     {
         "name": "Roka Stereo",
-        "pattern": "^Roka Stereo/",
+        "pattern": re.compile("^Roka Stereo/"),
         "examples": ["Roka Stereo/2.0.0 (com.goodbarber.rokastereo; build:110; iOS 13.7.0) Alamofire/4.8.2"],
     },
     {"name": "Roku", "pattern": "^Roku/", "examples": ["Roku/DVP-9.10 (499.10E04121A)"]},
     {
         "name": "Rhythmbox",
-        "pattern": "(^gvfs/|^rhythmbox/)",
+        "pattern": re.compile("(^gvfs/|^rhythmbox/)"),
         "description": "Rhythmbox is your one-stop multimedia application, supporting a music library, multiple playlists, internet radio, and more.",
         "urls": ["https://gitlab.gnome.org/GNOME/rhythmbox"],
         "comments": "The new UA is Rhythmbox: https://gitlab.gnome.org/GNOME/rhythmbox/-/issues/1855",
@@ -1578,32 +1580,32 @@ apps = [
     },
     {
         "name": "RSS Radio",
-        "pattern": "^RSSRadio",
+        "pattern": re.compile("^RSSRadio"),
         "urls": ["http://rssrad.io"],
         "examples": ["RSSRadio7/9252 CFNetwork/1107.1 Darwin/19.0.0", "RSSRadio/9710"],
     },
     {
         "name": "RSSOwl",
-        "pattern": "^RSSOwl.*Windows",
+        "pattern": re.compile("^RSSOwl.*Windows"),
         "description": "A Mac and Windows app, to help organize, search, and read feeds",
         "urls": ["http://www.rssowl.org/"],
         "examples": ["RSSOwl/2.2.1.201312301314 (Windows; U; en)"],
     },
     {
         "name": "SachNoi",
-        "pattern": "^SachNoi\\.app/|^SachNoiApp/",
+        "pattern": re.compile("^SachNoi\\.app/|^SachNoiApp/"),
         "examples": ["SachNoi.app/1 CFNetwork/1197 Darwin/20.0.0", "SachNoiApp/2 CFNetwork/1128.0.1 Darwin/19.6.0"],
     },
     {
         "name": "Samsung Podcasts",
-        "pattern": "^sp-agent",
+        "pattern": re.compile("^sp-agent"),
         "urls": ["https://developer.samsung.com/podcasts"],
         "examples": ["sp-agent"],
         "comments": "aka Samsung Free",
     },
     {
         "name": "ServeStream",
-        "pattern": "^ServeStream Dynamo/|^ServeStream$",
+        "pattern": re.compile("^ServeStream Dynamo/|^ServeStream$"),
         "examples": ["ServeStream Dynamo/1.0", "ServeStream"],
     },
     {"name": "Shadow", "pattern": "^Shadow", "urls": ["https://apps.apple.com/us/app/shadow/id940127690"]},
@@ -1611,19 +1613,19 @@ apps = [
     {"name": "Slack", "pattern": "^Slack/"},
     {
         "name": "Snipd",
-        "pattern": "^Snipd/",
+        "pattern": re.compile("^Snipd/"),
         "urls": ["https://www.snipd.com/"],
         "examples": ["Snipd/90 CFNetwork/1329 Darwin/21.3.0"],
     },
     {
         "name": "Snapchat",
-        "pattern": "s~snapchat-proxy",
+        "pattern": re.compile("s~snapchat-proxy"),
         "examples": ["AppEngine-Google; (+http://code.google.com/appengine; appid: s~snapchat-proxy)"],
     },
     {"name": "Sodes", "pattern": "^Sodes/", "examples": ["Sodes/1657 CFNetwork/1098.6 Darwin/19.0.0"]},
     {
         "name": "Sonnet",
-        "pattern": "(Sonnet|^Simple Podcast Player)",
+        "pattern": re.compile("(Sonnet|^Simple Podcast Player)"),
         "description": "Sonnet is a simple, easy to use podcast app aimed at new listeners",
         "svg": "sonnet.svg",
         "urls": ["https://sonnet.fm"],
@@ -1631,14 +1633,14 @@ apps = [
     },
     {
         "name": "Sony PlayStation 5",
-        "pattern": "^sony_tv;ps5;",
+        "pattern": re.compile("^sony_tv;ps5;"),
         "examples": ["sony_tv;ps5;9b18101888dd42948afd0b8792122bec;;tpapi;3.200.405"],
         "comments": "Possibly altered by Checkpoint Threat Prevention API",
     },
     {"name": "Sonos", "pattern": "Sonos"},
     {
         "name": "SoundOn",
-        "pattern": "^SoundOn/",
+        "pattern": re.compile("^SoundOn/"),
         "examples": [
             "SoundOn/1.9.17 (Linux;Android 10) ExoPlayerLib/2.9.4",
             "SoundOn/1.10.1",
@@ -1648,19 +1650,19 @@ apps = [
     },
     {
         "name": "SoundWaves",
-        "pattern": "^SoundWaves-\\d",
+        "pattern": re.compile("^SoundWaves-\\d"),
         "examples": ["SoundWaves-0.160.2"],
         "urls": ["https://play.google.com/store/apps/details?id=com.dne.wavesapp&hl=en_US&gl=US"],
     },
     {
         "name": "Sportbladet Android app",
-        "pattern": "Android Sportbladet Hermes/",
+        "pattern": re.compile("Android Sportbladet Hermes/"),
         "description": "Sportbladet Android app",
         "examples": ["Android Sportbladet Hermes/1000094692 _app_"],
     },
     {
         "name": "Sportbladet iOS app",
-        "pattern": "iOS Sportbladet Hermes/",
+        "pattern": re.compile("iOS Sportbladet Hermes/"),
         "description": "Sportbladet iOS app",
         "examples": [
             "AppleCoreMedia/1.0.0.19E239 (iPhone; U; CPU OS 15_4 like Mac OS X; sv_se) iOS Sportbladet Hermes/90.0.0 _app_"
@@ -1668,7 +1670,7 @@ apps = [
     },
     {
         "name": "Spotify",
-        "pattern": "^Spotify/.+Linux|Macintosh.+Spotify/|^Spotify/.+OSX|Windows.+Spotify/|^Spotify/.+Win32|^Spotify/.+Android|^Spotify/.+iOS|^Spotify/.+Polestar|^Spotify/.+Volvo|^spotify_|^Spotify-Lite|^Spotify/\\d",
+        "pattern": re.compile("^Spotify/.+Linux|Macintosh.+Spotify/|^Spotify/.+OSX|Windows.+Spotify/|^Spotify/.+Win32|^Spotify/.+Android|^Spotify/.+iOS|^Spotify/.+Polestar|^Spotify/.+Volvo|^spotify_|^Spotify-Lite|^Spotify/\\d"),
         "examples": [
             "Spotify/8.7.10 iOS/15.3.1 (iPhone13,2)",
             "spotify_other-mobile",
@@ -1682,13 +1684,13 @@ apps = [
     {"name": "Spreaker", "pattern": "(^Spreaker for Android|Spreaker/)"},
     {
         "name": "Stavanger Aftenblad Android app",
-        "pattern": "Android SA Hermes/",
+        "pattern": re.compile("Android SA Hermes/"),
         "description": "Stavanger Aftenblad Android app",
         "examples": ["Android SA Hermes/1000094692 _app_"],
     },
     {
         "name": "Stavanger Aftenblad iOS app",
-        "pattern": "iOS SA Hermes/",
+        "pattern": re.compile("iOS SA Hermes/"),
         "description": "Stavanger Aftenblad iOS app",
         "examples": [
             "AppleCoreMedia/1.0.0.19E239 (iPhone; U; CPU OS 15_4 like Mac OS X; sv_se) iOS SA Hermes/90.0.0 _app_"
@@ -1696,7 +1698,7 @@ apps = [
     },
     {
         "name": "Stitcher",
-        "pattern": "^Stitcher/|^Stitcher Demo/|^AlexaMediaPlayer/Stitcher",
+        "pattern": re.compile("^Stitcher/|^Stitcher Demo/|^AlexaMediaPlayer/Stitcher"),
         "examples": [
             "Stitcher Demo/4.8.0 (Linux;Android 11) ExoPlayerLib/2.10.7",
             "Stitcher/Android",
@@ -1705,7 +1707,7 @@ apps = [
     },
     {
         "name": "Stoler Report",
-        "pattern": "^Stoler(%20| )Report/",
+        "pattern": re.compile("^Stoler(%20| )Report/"),
         "examples": [
             "Stoler%20Report/1.4 CFNetwork/672.1.14 Darwin/14.0.0",
             "Stoler Report/1.4 CFNetwork/672.1.14 Darwin/14.0.0",
@@ -1714,12 +1716,12 @@ apps = [
     {"name": "Storiyoh", "pattern": "^Storiyoh/"},
     {
         "name": "StoryShots",
-        "pattern": "^StoryShots/",
+        "pattern": re.compile("^StoryShots/"),
         "examples": ["StoryShots/1.9.72 (Linux;Android 9) ExoPlayerLib/2.11.4"],
     },
     {
         "name": "Strilen iOS app",
-        "pattern": "iOS Strilen Hermes/",
+        "pattern": re.compile("iOS Strilen Hermes/"),
         "description": "Strilen iOS app",
         "examples": [
             "AppleCoreMedia/1.0.0.19E239 (iPhone; U; CPU OS 15_4 like Mac OS X; sv_se) iOS Strilen Hermes/90.0.0 _app_"
@@ -1728,7 +1730,7 @@ apps = [
     {"name": "Subcast", "pattern": "^Subcast"},
     {
         "name": "Svenska Dagbladet iOS app",
-        "pattern": "iOS SvD Hermes/",
+        "pattern": re.compile("iOS SvD Hermes/"),
         "description": "Svenska Dagbladet iOS app",
         "examples": [
             "AppleCoreMedia/1.0.0.19E239 (iPhone; U; CPU OS 15_4 like Mac OS X; sv_se) iOS SvD Hermes/90.0.0 _app_"
@@ -1737,30 +1739,30 @@ apps = [
     },
     {
         "name": "Svenska Dagbladet Android app",
-        "pattern": "SvD Hermes/",
+        "pattern": re.compile("SvD Hermes/"),
         "description": "Svenska Dagbladet Android app",
         "examples": ["SvD Hermes/999999999 _app_"],
         "comments": "Must match after ios app",
     },
     {
         "name": "Swinsian",
-        "pattern": "^Swinsian/",
+        "pattern": re.compile("^Swinsian/"),
         "urls": ["https://swinsian.com/"],
         "examples": ["Swinsian/472 CFNetwork/978.0.7 Darwin/18.7.0 (x86_64)"],
     },
     {
         "name": "TED",
-        "pattern": "^TED |^TED/",
+        "pattern": re.compile("^TED |^TED/"),
         "examples": ["TED POD-2.0.2", "TED/2941 CFNetwork/976 Darwin/18.2.0", "TED Android; Version 3.3.3; OPPO R15 9"],
     },
     {
         "name": "The God Minute",
-        "pattern": "^The God Minute/",
+        "pattern": re.compile("^The God Minute/"),
         "examples": ["The God Minute/8 CFNetwork/1125.2 Darwin/19.4.0"],
     },
     {
         "name": "The Economist",
-        "pattern": "(^lamarr-iOS|^TheEconomist-Lamarr-ios|^lamarr-android|^TheEconomist-Lamarr-android)",
+        "pattern": re.compile("(^lamarr-iOS|^TheEconomist-Lamarr-ios|^lamarr-android|^TheEconomist-Lamarr-android)"),
         "examples": [
             "lamarr-iOS-2.20.3-116",
             "TheEconomist-Lamarr-ios-2.22.2-12002",
@@ -1770,7 +1772,7 @@ apps = [
     },
     {
         "name": "The Podcast App",
-        "pattern": "^ThePodcastApp|iOS.*The Podcast App/|com\\.evolve\\.podcast/|^podcast/\\d* |^PodcastApp/\\d",
+        "pattern": re.compile("^ThePodcastApp|iOS.*The Podcast App/|com\\.evolve\\.podcast/|^podcast/\\d* |^PodcastApp/\\d"),
         "examples": [
             "ThePodcastApp/6.23.0 (iPhone; iOS 15.6.1; ) player (build 6272; +https://podcast.app/)",
             "ThePodcastApp/6.28.1 (iPhone; iOS 16.0.2; ) player (build 6391; +https://podcast.app/)",
@@ -1783,12 +1785,12 @@ apps = [
     },
     {
         "name": "Mozilla Thunderbird",
-        "pattern": " Thunderbird/",
+        "pattern": re.compile(" Thunderbird/"),
         "examples": ["Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Thunderbird/102.4.1"],
     },
     {
         "name": "TikTok",
-        "pattern": "musical_ly",
+        "pattern": re.compile("musical_ly"),
         "examples": [
             "Mozilla/5.0 (iPhone; CPU iPhone OS 13_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 musical_ly_17.5.0 JsSdk/2.0 NetType/WIFI Channel/App Store ByteLocale/nl Region/NL ByteFullLocale/nl-NL WKWebView/1"
         ],
@@ -1796,14 +1798,14 @@ apps = [
     {"name": "Treble", "pattern": "^TREBLE/", "examples": ["TREBLE/1.0"]},
     {
         "name": "Tumult",
-        "pattern": "^Tumult",
+        "pattern": re.compile("^Tumult"),
         "description": "Et le podcast devient social",
         "urls": ["https://tumult-podcast.com/"],
         "examples": ["Tumult"],
     },
     {
         "name": "TuneIn",
-        "pattern": "^TuneIn| TuneIn/",
+        "pattern": re.compile("^TuneIn| TuneIn/"),
         "urls": [
             "https://play.google.com/store/apps/details?id=tunein.player",
             "https://play.google.com/store/apps/details?id=radiotime.player",
@@ -1824,7 +1826,7 @@ apps = [
     },
     {
         "name": "Twitter",
-        "pattern": "^Twitter(Android)?/| Twitter for i",
+        "pattern": re.compile("^Twitter(Android)?/| Twitter for i"),
         "examples": [
             "TwitterAndroid/8.8.0-release.82 (18080082-r-82) SM-T837V/9 (samsung;SM-T837V;Verizon;gts4lltevzw;0;;0;2015)",
             "Twitter/7.51.5 CFNetwork/978.0.7 Darwin/18.6.0",
@@ -1833,7 +1835,7 @@ apps = [
     },
     {
         "name": "Tweetbot",
-        "pattern": "^Tweetbot/",
+        "pattern": re.compile("^Tweetbot/"),
         "examples": ["Tweetbot/53300 CFNetwork/1335.0.3 Darwin/21.6.0"],
         "urls": ["https://tapbots.com/tweetbot/"],
     },
@@ -1841,7 +1843,7 @@ apps = [
     {"name": "uTorrent", "pattern": "^uTorrent|BTWebClient", "examples": ["BTWebClient/1870(43938)"]},
     {
         "name": "Vestnytt iOS app",
-        "pattern": "iOS Vestnytt Hermes/",
+        "pattern": re.compile("iOS Vestnytt Hermes/"),
         "description": "Vestnytt iOS app",
         "examples": [
             "AppleCoreMedia/1.0.0.19E239 (iPhone; U; CPU OS 15_4 like Mac OS X; sv_se) iOS Vestnytt Hermes/90.0.0 _app_"
@@ -1849,13 +1851,13 @@ apps = [
     },
     {
         "name": "VG Android app",
-        "pattern": "Android VG Hermes/",
+        "pattern": re.compile("Android VG Hermes/"),
         "description": "VG Android app",
         "examples": ["Android VG Hermes/1000094692 app vg_app_ VG/Snarvei/1000094692 VG-App"],
     },
     {
         "name": "VG iOS app",
-        "pattern": "iOS VG Hermes/",
+        "pattern": re.compile("iOS VG Hermes/"),
         "description": "VG iOS app",
         "examples": [
             "AppleCoreMedia/1.0.0.19E239 (iPhone; U; CPU OS 15_4 like Mac OS X; sv_se) iOS VG Hermes/90.0.0 _app_"
@@ -1864,19 +1866,19 @@ apps = [
     {"name": "VictorReader", "pattern": "^VictorReader Stream|^VictorReader_", "examples": ["VictorReader_4-4-2"]},
     {
         "name": "VLC media player",
-        "pattern": "^VLC/\\d",
+        "pattern": re.compile("^VLC/\\d"),
         "urls": ["https://www.videolan.org/vlc/"],
         "examples": ["VLC/3.0.8 LibVLC/3.0.8"],
     },
     {
         "name": "Vodacast",
-        "pattern": "^Vodacast",
+        "pattern": re.compile("^Vodacast"),
         "description": "Podcasts with deeper digital stories",
         "urls": ["https://auddiainc.com/vodacast-app/"],
     },
     {
         "name": "Voiz FM",
-        "pattern": "^Voiz FM/",
+        "pattern": re.compile("^Voiz FM/"),
         "examples": ["Voiz FM/10.1.0 (Linux;Android 8.1.0) ExoPlayerLib/2.9.3"],
     },
     {"name": "Winamp", "pattern": "^Winamp", "examples": ["WinampMPEG/2.7"]},
@@ -1884,7 +1886,7 @@ apps = [
     {"name": "WhatsApp", "pattern": "^WhatsApp/", "examples": ["WhatsApp/0.3.5374 N"]},
     {
         "name": "Windows Media Player",
-        "pattern": "^NSPlayer|WMPlayer/|^Windows-Media-Player/",
+        "pattern": re.compile("^NSPlayer|WMPlayer/|^Windows-Media-Player/"),
         "examples": [
             "NSPlayer/12.00.18362.0418 WMFSDK/12.00.18362.0418",
             "Windows-Media-Player/12.0.15063.1805",
@@ -1893,7 +1895,7 @@ apps = [
     },
     {
         "name": "Xiao Yu Zhou",
-        "pattern": "^Xiaoyuzhou/",
+        "pattern": re.compile("^Xiaoyuzhou/"),
         "description": "Xiao Yu Zhou, a podcast app",
         "urls": [
             "https://apps.apple.com/cn/app/%E5%B0%8F%E5%AE%87%E5%AE%99-%E4%B8%80%E8%B5%B7%E5%90%AC%E6%92%AD%E5%AE%A2/id1488894313"
@@ -1902,7 +1904,7 @@ apps = [
     },
     {
         "name": "XING",
-        "pattern": "iPhone.*XING",
+        "pattern": re.compile("iPhone.*XING"),
         "description": "German version of LinkedIn",
         "urls": ["https://www.xing.com/"],
         "examples": [
@@ -1915,13 +1917,13 @@ apps = [
     {"name": "Zune", "pattern": "Zune/", "examples": ["Zune/4.8"]},
     {
         "name": "小宇宙",
-        "pattern": "^Podcast/1\\.",
+        "pattern": re.compile("^Podcast/1\\."),
         "description": "Cosmos, a chinese podcast app",
         "urls": ["https://www.coolapk.com/apk/app.podcast.cosmos"],
     },
     {
         "name": "KAIOS podcast app",
-        "pattern": ".*KAIOS/",
+        "pattern": re.compile(".*KAIOS/"),
         "urls": ["https://kaiostech.com"],
         "comments": "This is a standard useragent for KaiOS, the cut-down operating system for mobile phones in developing countries. Watch out - it may also contain Android.",
         "examples": [
