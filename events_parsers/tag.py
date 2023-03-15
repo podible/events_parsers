@@ -52,7 +52,7 @@ def process_event(data, ip_database):
 
     ip = None
     try:
-        check_ip = data.get("ip") or data["headers"]["x-forwarded-for"]
+        check_ip = data.get("ip") or data["headers"]["x-forwarded-for"][0].split(",")[0]
         try:
             ip = check_and_reformat_ip(check_ip)
         except ValueError:
