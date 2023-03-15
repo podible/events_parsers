@@ -52,7 +52,7 @@ def process_event(data, ip_database):
 
     ip = None
     try:
-        check_ip = data["headers"]["x-forwarded-for"][0].split(",")[0]
+        check_ip = data.get("ip") or data["headers"]["x-forwarded-for"][0].split(",")[0]
         try:
             ip = check_and_reformat_ip(check_ip)
         except ValueError:
@@ -64,7 +64,7 @@ def process_event(data, ip_database):
 
     user_agent, device, normalized_user_agent = None, None, None
     try:
-        user_agent = data["headers"]["user-agent"][0]
+        user_agent = data.get("useragent") or data["headers"]["user-agent"][0]
         ua_type, normalized_user_agent = normalize_user_agent(user_agent)
         if ua_type != "bot":
             device = normalize_device(user_agent)
@@ -93,56 +93,43 @@ def process_event(data, ip_database):
         None,
         None,
     )
-    if data.get("action") == "purchase" or data.get("action") == "signup":
-        params = json.dumps(
-            {
-                "value": data.get("value", 0),
-                "order_number": data.get("order_number"),
-                "num_items": data.get("num_items"),
-                "pricecurrency": data.get("pricecurrency", "USD"),
-                "discount_code": data.get("discount_code"),
-                "is_new_customer": data.get("is_new_customer"),
-                "is_subscription": data.get("is_subscription"),
-                "hashed_email": data.get("hashed_email"),
-                "referrer": unquote_plus(str(data["referrer"])) if "referrer" in data else None,
-                "url": unquote_plus(str(data["url"])) if "url" in data else None,
-                "h": data.get("h"),
-            },
-            default=str,
-        )
+    action = data.get("activitykind") or data.get("action", None)
+    params = json.dumps(
+        {
+            "value": data.get("value"),
+            "order_number": data.get("order_number"),
+            "num_items": data.get("num_items"),
+            "currency": data.get("currency"),
+            "discount_code": data.get("discount_code"),
+            "is_new_customer": data.get("is_new_customer"),
+            "is_subscription": data.get("is_subscription"),
+            "hashed_email": data.get("hashed_email"),
+            "referrer": unquote_plus(str(data["referrer"])) if "referrer" in data else None,
+            "url": unquote_plus(str(data["url"])) if "url" in data else None,
+            "h": data.get("h"),
+            "idfa": data.get("idfa"),
+            "gaid": data.get("gaid"),
+        },
+        default=str,
+    )
 
-        try:
-            order_value = float(data.get("value"))
-        except Exception as e:
-            print(f"ERROR ({e}) Invalid order_value: {data}")  # NB: watch it in CloudWatch!
+    try:
+        order_value = float(data.get("value"))
+    except Exception as e:
+        print(f"ERROR ({e}) Invalid order_value: {data}")  # NB: watch it in CloudWatch!
 
-        try:
-            order_number = data.get("order_number")
-            currency = data.get("currency", "USD")
-            discount_code = data.get("discount_code")
-            if discount_code == "null" or discount_code == "undefined" or discount_code == "":
-                discount_code = None
+    try:
+        order_number = data.get("order_number")
+        currency = data.get("currency", "USD")
+        discount_code = data.get("discount_code")
+        if discount_code == "null" or discount_code == "undefined" or discount_code == "":
+            discount_code = None
 
-            hashed_email = data.get("hashed_email")
-            referrer = unquote_plus(str(data["referrer"])) if "referrer" in data else None
-            landing_url = unquote_plus(str(data["url"])) if "url" in data else None
-        except Exception as e:
-            print(f"ERROR ({e}) Invalid params: {data}")  # NB: watch it in CloudWatch!
-
-    else:
-        params = json.dumps(
-            {
-                "referrer": unquote_plus(str(data["referrer"])) if "referrer" in data else None,
-                "url": unquote_plus(str(data["url"])) if "url" in data else None,
-                "h": data.get("h"),
-            },
-            default=str,
-        )
-        try:
-            referrer = unquote_plus(str(data["referrer"])) if "referrer" in data else None
-            landing_url = unquote_plus(str(data["url"])) if "url" in data else None
-        except Exception as e:
-            print(f"ERROR ({e}) Invalid params: {data}")  # NB: watch it in CloudWatch!
+        hashed_email = data.get("hashed_email")
+        referrer = unquote_plus(str(data["referrer"])) if "referrer" in data else None
+        landing_url = unquote_plus(str(data["url"])) if "url" in data else None
+    except Exception as e:
+        print(f"ERROR ({e}) Invalid params: {data}")  # NB: watch it in CloudWatch!
 
     try:
         uuid = str(data["uuid"])
@@ -150,7 +137,7 @@ def process_event(data, ip_database):
         print(f"ERROR ({e}) Bad UUID in data: {data}")  # NB: watch it in CloudWatch!
         uuid = str(uuid4())
 
-    advertiser = str(data["advertiser"]) if "advertiser" in data else None
+    advertiser = str(data["advertiser"].lower()) if "advertiser" in data else None
     if advertiser == "bookshop.org":
         advertiser = "bookshoporg"
 
@@ -169,7 +156,7 @@ def process_event(data, ip_database):
         "normalized_user_agent": normalized_user_agent,
         "params": params,
         "headers": mvh,
-        "action": str(data["action"]) if "action" in data else None,
+        "action": action,
         "country": country,
         "city": city,
         "region": region,
