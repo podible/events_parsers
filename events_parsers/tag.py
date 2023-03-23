@@ -109,7 +109,7 @@ def process_event(data, ip_database):
     )
 
     try:
-        order_value = float(data.get("value"))
+        order_value = float(data.get("value")) if data.get("value") else None
     except Exception as e:
         print(f"ERROR ({e}) Invalid order_value: {data}")  # NB: watch it in CloudWatch!
 
