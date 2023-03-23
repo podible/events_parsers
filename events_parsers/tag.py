@@ -94,22 +94,17 @@ def process_event(data, ip_database):
         None,
     )
     action = data.get("activitykind") or data.get("action", None)
+
+    # Handle Adjast + Paired
+    if action == "event":
+        if data.get("event_name") == 'Trial+Started':
+            action = 'signup'
+           
+        if data.get("event_name") == 'Trial+Converted' or data.get("event_name") == 'Initial+Purchase':
+            action = 'purchase'
+
     params = json.dumps(
-        {
-            "value": data.get("value"),
-            "order_number": data.get("order_number"),
-            "num_items": data.get("num_items"),
-            "currency": data.get("currency"),
-            "discount_code": data.get("discount_code"),
-            "is_new_customer": data.get("is_new_customer"),
-            "is_subscription": data.get("is_subscription"),
-            "hashed_email": data.get("hashed_email"),
-            "referrer": unquote_plus(str(data["referrer"])) if "referrer" in data else None,
-            "url": unquote_plus(str(data["url"])) if "url" in data else None,
-            "h": data.get("h"),
-            "idfa": data.get("idfa"),
-            "gaid": data.get("gaid"),
-        },
+        data,
         default=str,
     )
 
