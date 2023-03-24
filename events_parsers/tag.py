@@ -97,10 +97,10 @@ def process_event(data, ip_database):
 
     # Handle Adjast + Paired
     if action == "event":
-        if data.get("event_name") == 'Trial+Started':
+        if data.get("event_name") == 'Trial Started':
             action = 'signup'
            
-        if data.get("event_name") == 'Trial+Converted' or data.get("event_name") == 'Initial+Purchase':
+        if data.get("event_name") == 'Trial Converted' or data.get("event_name") == 'Initial Purchase':
             action = 'purchase'
 
     params = json.dumps(
