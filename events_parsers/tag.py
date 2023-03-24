@@ -93,15 +93,19 @@ def process_event(data, ip_database):
         None,
         None,
     )
-    action = data.get("activitykind") or data.get("action", None)
 
-    # Handle Adjast + Paired
-    if action == "event":
-        if data.get("event_name") == 'Trial Started':
-            action = 'signup'
-           
-        if data.get("event_name") == 'Trial Converted' or data.get("event_name") == 'Initial Purchase':
-            action = 'purchase'
+    action = data.get("activitykind") or data.get("action", None)
+    try:
+        # Handle Adjast + Paired
+        if action == "event":
+            if data.get("event_name") == "Trial Started":
+                action = "signup"
+            
+            if data.get("event_name") == "Trial Converted" or data.get("event_name") == "Initial Purchase":
+                action = "purchase"
+    except Exception as e:
+        print(f"ERROR ({e}) Invalid activitykind or action: {data}")  # NB: watch it in CloudWatch!
+
 
     params = json.dumps(
         data,
