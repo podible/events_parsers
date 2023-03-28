@@ -136,6 +136,7 @@ def process_event(data, ip_database):
         "device": device,
         "normalized_user_agent": normalized_user_agent,
         "request_id": str(request_id) if request_id is not None else request_id,
+        "clname": data.get("clname"),
         "cw_timestamp": request_timestamp,  # .strftime("%Y-%m-%d %H:%M:%S.%f"),  # for kafka
     }
 
