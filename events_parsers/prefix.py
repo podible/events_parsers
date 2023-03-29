@@ -69,8 +69,8 @@ def process_event(data, ip_database):
         incoming_path = None
 
     ua_type, normalized_user_agent = normalize_user_agent(user_agent)
-    trusted = ua_type not in ["bot", "library"]
-    if ua_type != "bot":
+    trusted = ua_type != "bot"
+    if trusted:
         device = normalize_device(user_agent)
     else:
         device = "Bot"

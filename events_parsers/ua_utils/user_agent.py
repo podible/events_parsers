@@ -25,6 +25,8 @@ def normalize_user_agent(user_agent: str) -> tuple[str, str]:
         db = ua_db[1]
         for entity in db:
             if re.search(entity["pattern"], user_agent):
+                if entity.get('category') == 'bot':
+                    return 'bot', entity["name"]
                 return ua_type, entity["name"]
 
     return "other", "Other"
