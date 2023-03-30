@@ -10,7 +10,7 @@ from events_parsers.helpers import check_and_reformat_ip
 from events_parsers.ua_utils.user_agent import normalize_user_agent, normalize_device
 
 
-def process_event(data, ip_database):
+def process_event(data, ip_usage_type_db, ip_zipcode_db):
     request_timestamp = datetime.fromtimestamp(data["request_timestamp"], pytz.UTC)
 
     for param in data["multiValueQueryStringParameters"]:
@@ -66,16 +66,22 @@ def process_event(data, ip_database):
         user_id,
     ) = parse_impression_data(data)
 
-    country, city, region, ip_usage_type = None, None, None, None
+    country, city, region, ip_usage_type, postal = None, None, None, None, None
     if ip:
         try:
-            rec = ip_database.get_all(ip)
+            rec = ip_usage_type_db.get_all(ip)
             country = rec.country_short.lower() if rec.country_short != "-" else None
             city = rec.city if rec.city != "-" else None
             region = rec.region if rec.region != "-" else None
             ip_usage_type = rec.usage_type if rec.usage_type != "-" else None
         except Exception as e:
-            print(f"ERROR ({e}) i2l_database: {ip}")  # NB: watch it in CloudWatch!
+            print(f"ERROR ({e}) ip_usage_type_db: {ip}", flush=True)  # NB: watch it in CloudWatch!
+
+        try:
+            rec = ip_zipcode_db.get_all(ip)
+            postal = str(rec.postal).lower() if rec.postal != "-" else None
+        except Exception as e:
+            print(f"ERROR ({e}) ip_zipcode_db: {ip}", flush=True)  # NB: watch it in CloudWatch!
 
     timestamp = None
     if "dt" in data:
@@ -114,8 +120,10 @@ def process_event(data, ip_database):
         uuid = uuid4()
 
     request_id = data.get("requestId") or data.get("externalCampaignId")
+    clname = data.get("clname")
 
     return {
+        # cast string to things coming from query params, badly placed pixel can cause types mismatch
         "episode_id": str(episode_id) if episode_id is not None else episode_id,
         "episode_title": str(episode_title) if episode_title is not None else episode_title,
         "series_id": str(series_id) if series_id is not None else series_id,
@@ -124,20 +132,21 @@ def process_event(data, ip_database):
         "platform": str(platform) if platform is not None else platform,
         "user_id": str(user_id) if user_id is not None else user_id,
         "user_agent": str(user_agent) if user_agent is not None else user_agent,
+        "request_id": str(request_id) if request_id is not None else request_id,
+        "clname": str(clname) if clname is not None else clname,
         "ip": str(ip) if ip is not None else ip,
         "params": json.dumps(data, default=str),
-        "country": str(country) if country is not None else country,
-        "city": str(city) if city is not None else city,
-        "region": str(region) if region is not None else region,
-        "ip_usage_type": str(ip_usage_type) if ip_usage_type is not None else ip_usage_type,
-        "timestamp": timestamp,  # .strftime("%Y-%m-%d %H:%M:%S.%f"),  # for kafka
-        "uuid": str(uuid) if uuid is not None else uuid,
+        "country": country,
+        "city": city,
+        "region": region,
+        "ip_usage_type": ip_usage_type,
+        "postal": postal,
+        "timestamp": timestamp,
+        "uuid": uuid,
         "trusted": trusted,
         "device": device,
         "normalized_user_agent": normalized_user_agent,
-        "request_id": str(request_id) if request_id is not None else request_id,
-        "clname": data.get("clname"),
-        "cw_timestamp": request_timestamp,  # .strftime("%Y-%m-%d %H:%M:%S.%f"),  # for kafka
+        "cw_timestamp": request_timestamp,
     }
 
 
