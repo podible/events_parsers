@@ -53,7 +53,7 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
 
         try:
             rec = ip_zipcode_db.get_all(ip)
-            postal = str(rec.postal).lower() if rec.postal != "-" else None
+            postal = str(rec.zipcode).lower() if rec.zipcode != "-" else None
         except Exception as e:
             print(f"ERROR ({e}) ip_zipcode_db: {ip}", flush=True)  # NB: watch it in CloudWatch!
 
