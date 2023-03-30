@@ -1,7 +1,4 @@
 import ipaddress
-import json
-
-ZIP2DMA = json.load(open('dma.json'))
 
 
 def check_and_reformat_ip(ip):

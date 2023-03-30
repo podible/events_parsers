@@ -6,7 +6,8 @@ from uuid import uuid4
 
 import pytz
 
-from events_parsers.helpers import check_and_reformat_ip, ZIP2DMA
+from events_parsers.helpers import check_and_reformat_ip
+from events_parsers.dma import ZIP2DMA
 from events_parsers.ua_utils.user_agent import normalize_user_agent, normalize_device
 
 
