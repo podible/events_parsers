@@ -5,11 +5,11 @@ from uuid import uuid4, UUID
 
 import pytz
 
-from events_parsers.helpers import check_and_reformat_ip
+from events_parsers.helpers import check_and_reformat_ip, ZIP2DMA
 from events_parsers.ua_utils.user_agent import normalize_user_agent, normalize_device
 
 
-def process_event(data, ip_database):
+def process_event(data, ip_usage_type_db, ip_zipcode_db):
     request_timestamp = datetime.fromtimestamp(data["request_timestamp"], pytz.UTC)  # .strftime("%Y-%m-%d %H:%M:%S.%f")  # for kafka
     http_method = data["httpMethod"]
     if http_method == "GET":
@@ -73,16 +73,29 @@ def process_event(data, ip_database):
     except Exception as e:
         print(f"ERROR ({e}) Failed to get User Agent, proceeding: {data}")
 
-    country, city, region, ip_usage_type = None, None, None, None
+    country, city, region, ip_usage_type, postal = None, None, None, None, None
     if ip:
         try:
-            rec = ip_database.get_all(ip)
+            rec = ip_usage_type_db.get_all(ip)
             country = str(rec.country_short).lower() if rec.country_short != "-" else None
             city = str(rec.city) if rec.city != "-" else None
             region = str(rec.region) if rec.region != "-" else None
             ip_usage_type = str(rec.usage_type) if rec.usage_type != "-" else None
         except Exception as e:
-            print(f"ERROR i2l_database: {ip}", e, flush=True)  # NB: watch it in CloudWatch!
+            print(f"ERROR ({e}) ip_usage_type_db: {ip}", flush=True)  # NB: watch it in CloudWatch!
+
+        try:
+            rec = ip_zipcode_db.get_all(ip)
+            postal = str(rec.postal).lower() if rec.postal != "-" else None
+        except Exception as e:
+            print(f"ERROR ({e}) ip_zipcode_db: {ip}", flush=True)  # NB: watch it in CloudWatch!
+
+    dma = None
+    if postal:
+        try:
+            dma = ZIP2DMA[postal]['name']
+        except Exception as e:
+            print(f"ERROR ({e}) ZIP2DMA: {postal}", flush=True)  # NB: watch it in CloudWatch!
 
     order_value, order_number, currency, discount_code, hashed_email, referrer, landing_url = (
         None,
@@ -105,7 +118,6 @@ def process_event(data, ip_database):
                 action = "purchase"
     except Exception as e:
         print(f"ERROR ({e}) Invalid activitykind or action: {data}")  # NB: watch it in CloudWatch!
-
 
     params = json.dumps(
         data,
@@ -160,6 +172,7 @@ def process_event(data, ip_database):
         "city": city,
         "region": region,
         "ip_usage_type": ip_usage_type,
+        "postal": postal,
         "timestamp": request_timestamp,
         "uuid": uuid,
         "device_id": device_id,
@@ -170,4 +183,5 @@ def process_event(data, ip_database):
         "hashed_email": hashed_email,
         "referrer": referrer,
         "landing_url": landing_url,
+        "DMA": dma
     }
