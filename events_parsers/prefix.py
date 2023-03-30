@@ -4,7 +4,7 @@ from uuid import uuid4
 
 import pytz
 
-from events_parsers.helpers import check_and_reformat_ip
+from events_parsers.helpers import check_and_reformat_ip, ZIP2DMA
 from events_parsers.ua_utils.user_agent import normalize_user_agent, normalize_device
 
 
@@ -56,6 +56,13 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         except Exception as e:
             print(f"ERROR ({e}) ip_zipcode_db: {ip}", flush=True)  # NB: watch it in CloudWatch!
 
+    dma = None
+    if postal:
+        try:
+            dma = ZIP2DMA[postal]['name']
+        except Exception as e:
+            print(f"ERROR ({e}) ZIP2DMA: {postal}", flush=True)  # NB: watch it in CloudWatch!
+
     try:
         redirect_url = data["redirectTarget"]
     except KeyError:
@@ -99,4 +106,5 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         "trusted": trusted,
         "device": device,
         "normalized_user_agent": normalized_user_agent,
+        "DMA": dma
     }

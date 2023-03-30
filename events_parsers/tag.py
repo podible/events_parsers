@@ -5,7 +5,7 @@ from uuid import uuid4, UUID
 
 import pytz
 
-from events_parsers.helpers import check_and_reformat_ip
+from events_parsers.helpers import check_and_reformat_ip, ZIP2DMA
 from events_parsers.ua_utils.user_agent import normalize_user_agent, normalize_device
 
 
@@ -89,6 +89,13 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
             postal = str(rec.postal).lower() if rec.postal != "-" else None
         except Exception as e:
             print(f"ERROR ({e}) ip_zipcode_db: {ip}", flush=True)  # NB: watch it in CloudWatch!
+
+    dma = None
+    if postal:
+        try:
+            dma = ZIP2DMA[postal]['name']
+        except Exception as e:
+            print(f"ERROR ({e}) ZIP2DMA: {postal}", flush=True)  # NB: watch it in CloudWatch!
 
     order_value, order_number, currency, discount_code, hashed_email, referrer, landing_url = (
         None,
@@ -176,4 +183,5 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         "hashed_email": hashed_email,
         "referrer": referrer,
         "landing_url": landing_url,
+        "DMA": dma
     }
