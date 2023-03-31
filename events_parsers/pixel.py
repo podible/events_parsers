@@ -85,7 +85,7 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
             print(f"ERROR ({e}) ip_zipcode_db: {ip}", flush=True)  # NB: watch it in CloudWatch!
 
     dma = None
-    if postal:
+    if postal and country == 'us':
         try:
             dma = ZIP2DMA[postal]['name']
         except Exception as e:
