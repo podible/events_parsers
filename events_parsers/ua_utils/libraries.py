@@ -1,7 +1,7 @@
 import re
 
 libraries = [
-    {"name": "AndroidDownloadManager", "pattern": "^AndroidDownloadManager"},
+    {"name": "AndroidDownloadManager", "pattern": re.compile("^AndroidDownloadManager")},
     {
         "name": "Apache HttpClient",
         "pattern": re.compile("Apache-HttpClient"),
@@ -31,7 +31,7 @@ libraries = [
         "comments": "This is a library, and not an app",
         "examples": ["Armadillo/12.19 (Linux;Android 11) ExoPlayerLib/2.17.1"],
     },
-    {"name": "Axios (Node)", "pattern": "^axios/", "examples": ["axios/0.26.1"], "category": "bot"},
+    {"name": "Axios (Node)", "pattern": re.compile("^axios/"), "examples": ["axios/0.26.1"], "category": "bot"},
     {
         "name": "Colly",
         "description": "Lightning Fast and Elegant Scraping Framework for Go",
@@ -104,7 +104,7 @@ libraries = [
         "examples": ["amarok/2.8.0 (Phonon/4.7.80; Phonon-GStreamer/4.7.80)"],
         "comments": "User-facing Linux media playback apps like Amarok",
     },
-    {"name": "gvfs", "pattern": "^gvfs"},
+    {"name": "gvfs", "pattern": re.compile("^gvfs")},
     {
         "name": "hackney (elixir)",
         "pattern": re.compile("^hackney/\\d"),
@@ -125,14 +125,14 @@ libraries = [
         "urls": ["https://libsoup.org/"],
         "description": "HTTP client/server library for GNOME",
     },
-    {"name": "Android License Verification Library", "pattern": "^Android\\.LVLDM$", "examples": ["Android.LVLDM"]},
+    {"name": "Android License Verification Library", "pattern": re.compile("^Android\\.LVLDM$"), "examples": ["Android.LVLDM"]},
     {
         "name": "node-fetch",
         "pattern": re.compile("^node-fetch(/.*)?$"),
         "examples": ["node-fetch/1.0 (+https://github.com/bitinn/node-fetch)", "node-fetch"],
         "category": "bot",
     },
-    {"name": "okhttp", "pattern": "okhttp", "examples": ["okhttp/3.11.0"], "category": "bot"},
+    {"name": "okhttp", "pattern": re.compile("okhttp"), "examples": ["okhttp/3.11.0"], "category": "bot"},
     {
         "name": "python-httpx",
         "pattern": re.compile("^python-httpx/"),
@@ -148,7 +148,7 @@ libraries = [
         "description": "A fully fledged audio module created for music apps. Provides audio playback, external media controls, chromecast support, background mode and more!",
         "comments": "Must match before exoplayer",
     },
-    {"name": "Request (node)", "pattern": "request\\.js", "category": "bot"},
+    {"name": "Request (node)", "pattern": re.compile("request\\.js"), "category": "bot"},
     {
         "name": "reqwest (rust)",
         "pattern": re.compile("^reqwest/\\d"),
@@ -162,7 +162,7 @@ libraries = [
         "examples": ["resty-requests"],
         "category": "bot",
     },
-    {"name": "ruby", "pattern": "^Ruby", "comments": "The generic Ruby user-agent."},
+    {"name": "ruby", "pattern": re.compile("^Ruby"), "comments": "The generic Ruby user-agent."},
     {
         "name": "rest-client (ruby)",
         "pattern": re.compile("^rest-client/.*ruby/"),
@@ -177,14 +177,14 @@ libraries = [
         "pattern": re.compile("^SafariViewService/"),
         "examples": ["SafariViewService/8614.1.25.0.31 CFNetwork/1390 Darwin/22.0.0"],
     },
-    {"name": "stagefright", "pattern": "stagefright/", "comments": "(android)"},
+    {"name": "stagefright", "pattern": re.compile("stagefright/"), "comments": "(android)"},
     {
         "name": "Symfony (php)",
         "pattern": re.compile("^Symfony HttpClient/"),
         "examples": ["Symfony HttpClient/Curl"],
         "category": "bot",
     },
-    {"name": "urllib (python)", "pattern": "^Python-urllib/", "examples": ["Python-urllib/3.9"], "category": "bot"},
+    {"name": "urllib (python)", "pattern": re.compile("^Python-urllib/"), "examples": ["Python-urllib/3.9"], "category": "bot"},
     {
         "name": "ExoPlayer (Android)",
         "pattern": re.compile(" ExoPlayerLib/"),

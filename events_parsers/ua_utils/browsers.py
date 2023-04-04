@@ -1,7 +1,7 @@
 import re
 
 browsers = [
-    {"name": "Brave", "pattern": ".+[Bb]rave"},
+    {"name": "Brave", "pattern": re.compile(".+[Bb]rave")},
     {
         "name": "Opera",
         "pattern": re.compile("Opera/|Macintosh.*OPR/|Windows.*OPR/|Mobile/.* OPT/"),
@@ -45,7 +45,7 @@ browsers = [
             "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko",
         ],
     },
-    {"name": "NCSA Mosaic", "pattern": "^NCSA Mosaic/", "examples": ["NCSA Mosaic/1.0 (X11;SunOS 4.1.4 sun4m)"]},
+    {"name": "NCSA Mosaic", "pattern": re.compile("^NCSA Mosaic/"), "examples": ["NCSA Mosaic/1.0 (X11;SunOS 4.1.4 sun4m)"]},
     {
         "name": "Safari",
         "pattern": re.compile("Macintosh.*AppleWebKit.*Safari/|Windows.*AppleWebKit.*Safari/|iPhone.*AppleWebKit.*Safari/|iPad.*AppleWebKit.*Safari/|^MobileSafari/"),

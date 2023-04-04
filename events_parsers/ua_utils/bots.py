@@ -1,7 +1,7 @@
 import re
 
 bots = [
-    {"name": "AAABot - unknown bot", "pattern": "AAABot", "examples": ["AAABot"]},
+    {"name": "AAABot - unknown bot", "pattern": re.compile("AAABot"), "examples": ["AAABot"]},
     {
         "name": "AhrefsBot",
         "pattern": re.compile("AhrefsBot/"),
@@ -31,7 +31,7 @@ bots = [
         ],
         "comments": "Stats are available within the Alexa skills dashboard.",
     },
-    {"name": "AlignaBot", "pattern": "^Alignabot", "examples": ["Alignabot 1.0 (https://www.alignable.com/)"]},
+    {"name": "AlignaBot", "pattern": re.compile("^Alignabot"), "examples": ["Alignabot 1.0 (https://www.alignable.com/)"]},
     {
         "name": "Amazon Music Podcasts Bot",
         "pattern": re.compile("^Amazon Music Podcast"),
@@ -81,7 +81,7 @@ bots = [
         "urls": ["https://archive.org/details/archive.org_bot"],
         "examples": ["Mozilla/5.0 (compatible; archive.org_bot http://archive.org/details/archive.org_bot)"],
     },
-    {"name": "atheerfm", "pattern": "^atheerfm/", "examples": ["atheerfm/1 CFNetwork/758.3.15 Darwin/15.3.0"]},
+    {"name": "atheerfm", "pattern": re.compile("^atheerfm/"), "examples": ["atheerfm/1 CFNetwork/758.3.15 Darwin/15.3.0"]},
     {
         "name": "Audiomack",
         "pattern": re.compile("^Audiomack Podcast Processor/"),
@@ -98,9 +98,9 @@ bots = [
         "pattern": re.compile("^AwarioSmartBot/"),
         "examples": ["AwarioSmartBot/1.0 (+https://awario.com/bots.html; bots@awario.com)"],
     },
-    {"name": "Babbar", "pattern": "Barkrowler/", "urls": ["https://beta.babbar.tech/crawler"]},
+    {"name": "Babbar", "pattern": re.compile("Barkrowler/"), "urls": ["https://beta.babbar.tech/crawler"]},
     {"name": "Baidu", "pattern": "\\(ce\\.baidu\\.com", "examples": ["Baidu-YunGuanCe-SLABot(ce.baidu.com)"]},
-    {"name": "bbot", "pattern": "^bbot/", "examples": ["bbot/0.1"]},
+    {"name": "bbot", "pattern": re.compile("^bbot/"), "examples": ["bbot/0.1"]},
     {
         "name": "British Library",
         "pattern": re.compile("^bl\\.uk_ldfc_bot"),
@@ -115,9 +115,9 @@ bots = [
         "pattern": re.compile("^CastFeedValidator/"),
         "examples": ["CastFeedValidator/3.0.5 (https://castfeedvalidator.com)"],
     },
-    {"name": "Castopod", "pattern": "Castopod/1\\.0", "examples": ["Castopod/1.0"]},
-    {"name": "Chartable", "pattern": "^Trackable/", "urls": ["https://chartable.com/"]},
-    {"name": "Clark-Crawler, unknown", "pattern": "^clark-crawler2"},
+    {"name": "Castopod", "pattern": re.compile("Castopod/1\\.0"), "examples": ["Castopod/1.0"]},
+    {"name": "Chartable", "pattern": re.compile("^Trackable/"), "urls": ["https://chartable.com/"]},
+    {"name": "Clark-Crawler, unknown", "pattern": re.compile("^clark-crawler2")},
     {
         "name": "Critical Mention",
         "pattern": re.compile("^Podcast-CriticalMention/"),
@@ -140,15 +140,15 @@ bots = [
         "urls": ["https://dataforseo.com/dataforseo-bot"],
         "examples": ["Mozilla/5.0 (compatible; DataForSeoBot/1.0; +https://dataforseo.com/dataforseo-bot)"],
     },
-    {"name": "Datagnion Bot", "pattern": "^datagnionbot"},
+    {"name": "Datagnion Bot", "pattern": re.compile("^datagnionbot")},
     {
         "name": "Daum",
         "pattern": re.compile("http://cs\\.daum\\.net"),
         "examples": ["Mozilla/5.0 (compatible; Daum/4.1; +http://cs.daum.net/faq/15/4118.html?faqId=28966)"],
     },
-    {"name": "Deezer Podcasters", "pattern": "^Deezer Podcasters/1\\.0"},
-    {"name": "Digg", "pattern": "^Digg ", "examples": ["Digg Mozilla/5.0 (Digg/1.0; support@digg.com)"]},
-    {"name": "dorada", "pattern": "support@dorada\\.co\\.uk"},
+    {"name": "Deezer Podcasters", "pattern": re.compile("^Deezer Podcasters/1\\.0")},
+    {"name": "Digg", "pattern": re.compile("^Digg "), "examples": ["Digg Mozilla/5.0 (Digg/1.0; support@digg.com)"]},
+    {"name": "dorada", "pattern": re.compile("support@dorada\\.co\\.uk")},
     {
         "name": "DotBot",
         "pattern": re.compile("DotBot"),
@@ -193,13 +193,13 @@ bots = [
         "pattern": re.compile("^Feedly/"),
         "examples": ["Feedly/1.0 (+http://www.feedly.com/fetcher.html; like FeedFetcher-Google)"],
     },
-    {"name": "FlexGet", "pattern": "^FlexGet/", "examples": ["FlexGet/3.3.4 (www.flexget.com)"]},
+    {"name": "FlexGet", "pattern": re.compile("^FlexGet/"), "examples": ["FlexGet/3.3.4 (www.flexget.com)"]},
     {
         "name": "Flipboard Proxy",
         "pattern": re.compile("FlipboardProxy/"),
         "examples": ["Mozilla/5.0 (compatible; FlipboardProxy/1.1; +http://flipboard.com/browserproxy)"],
     },
-    {"name": "Fyyd", "pattern": "^fyyd-poll"},
+    {"name": "Fyyd", "pattern": re.compile("^fyyd-poll")},
     {
         "name": "Go Storage Gateway V1",
         "pattern": re.compile("^storagegw-v1-go$"),
@@ -215,8 +215,8 @@ bots = [
         "comments": "RSS scraper / podcast verifier. Contact hello at goodpods dot com.",
         "examples": ["Goodpods/2.2"],
     },
-    {"name": "Google AdsBot", "pattern": "AdsBot-Google", "urls": ["http://www.google.com/adsbot.html"]},
-    {"name": "Google Podcasts Manager", "pattern": "Google-Podcast"},
+    {"name": "Google AdsBot", "pattern": re.compile("AdsBot-Google"), "urls": ["http://www.google.com/adsbot.html"]},
+    {"name": "Google Podcasts Manager", "pattern": re.compile("Google-Podcast")},
     {
         "name": "Googlebot",
         "pattern": re.compile("Googlebot/|Googlebot-Video/|Googlebot-Image/|^Feedfetcher-Google"),
@@ -255,16 +255,16 @@ bots = [
             "ia_archiver-web.archive.org",
         ],
     },
-    {"name": "Jaunt", "pattern": "^Jaunt/", "examples": ["Jaunt/1.5"]},
+    {"name": "Jaunt", "pattern": re.compile("^Jaunt/"), "examples": ["Jaunt/1.5"]},
     {
         "name": "l'Institut national de l'audiovisuel",
         "pattern": re.compile("INA dlweb"),
         "urls": ["https://institut.ina.fr/collecte-du-depot-legal-web"],
         "comments": "Institut National de l'Audiovisuel is a repository of all French radio and television audiovisual archives.",
     },
-    {"name": "Libsyn", "pattern": "^Libsyn4", "examples": ["Libsyn4-Download"]},
-    {"name": "libwww-perl", "pattern": "^libwww-perl| libwww-perl", "examples": ["LWP::Simple/6.34 libwww-perl/6.34"]},
-    {"name": "Livelap Crawler", "pattern": "LivelapBot"},
+    {"name": "Libsyn", "pattern": re.compile("^Libsyn4"), "examples": ["Libsyn4-Download"]},
+    {"name": "libwww-perl", "pattern": re.compile("^libwww-perl| libwww-perl"), "examples": ["LWP::Simple/6.34 libwww-perl/6.34"]},
+    {"name": "Livelap Crawler", "pattern": re.compile("LivelapBot")},
     {
         "name": "LTX71",
         "pattern": re.compile("^ltx71 "),
@@ -272,7 +272,7 @@ bots = [
         "urls": ["http://ltx71.com/"],
         "examples": ["ltx71 - (http://ltx71.com/)"],
     },
-    {"name": "MauiBot", "pattern": "^MauiBot", "examples": ["MauiBot (crawler.feedback dc@gmail.com)"]},
+    {"name": "MauiBot", "pattern": re.compile("^MauiBot"), "examples": ["MauiBot (crawler.feedback dc@gmail.com)"]},
     {
         "name": "Mastodon Bot",
         "pattern": re.compile("rb/.*Mastodon/"),
@@ -307,7 +307,7 @@ bots = [
         "pattern": re.compile("^'?Mozilla(/5\\.0(\\.\\.\\.)?)?$|^\\(Mozilla/5\\.0\\)$"),
         "examples": ["Mozilla/5.0", "Mozilla", "Mozilla/5.0...", "'Mozilla/5.0", "(Mozilla/5.0)"],
     },
-    {"name": "MSN Bot", "pattern": "^msnbot/"},
+    {"name": "MSN Bot", "pattern": re.compile("^msnbot/")},
     {
         "name": "Neevabot",
         "pattern": re.compile(".*Neevabot"),
@@ -319,16 +319,16 @@ bots = [
         "pattern": re.compile(" NetcraftSurveyAgent/"),
         "examples": ["Mozilla/5.0 (compatible; NetcraftSurveyAgent/1.0; +info@netcraft.com)"],
     },
-    {"name": "OgScrper", "pattern": "OgScrper", "examples": ["OgScrper"]},
-    {"name": "OkDownload", "pattern": "^OkDownload/"},
-    {"name": "OP3 Fetcher", "pattern": "^op3-fetcher/", "examples": ["op3-fetcher/1.0 (https://op3.dev)"]},
+    {"name": "OgScrper", "pattern": re.compile("OgScrper"), "examples": ["OgScrper"]},
+    {"name": "OkDownload", "pattern": re.compile("^OkDownload/")},
+    {"name": "OP3 Fetcher", "pattern": re.compile("^op3-fetcher/"), "examples": ["op3-fetcher/1.0 (https://op3.dev)"]},
     {
         "name": "Overcast feed parser",
         "pattern": re.compile("^Overcast/1\\.0 Podcast Sync"),
         "comments": "Marco Arment says: when a new episode is detected, the servers fetch a copy of it to seed these values with an initial set of data to make the privacy screen more accurate.",
         "examples": ["Overcast/1.0 Podcast Sync"],
     },
-    {"name": "Pandora RSS crawler", "pattern": "^PandoraRSSCrawler"},
+    {"name": "Pandora RSS crawler", "pattern": re.compile("^PandoraRSSCrawler")},
     {
         "name": "PaperLi",
         "pattern": re.compile("PaperLiBot/"),
@@ -345,13 +345,13 @@ bots = [
             "Mozilla/5.0 (Linux; Android 7.0;) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; PetalBot; https://aspiegel.com/petalbot)"
         ],
     },
-    {"name": "Pingdom", "pattern": "^Pingdom"},
+    {"name": "Pingdom", "pattern": re.compile("^Pingdom")},
     {
         "name": "PlayerFM Podcast Sync",
         "pattern": re.compile("PlayerFM/.* Podcast Sync"),
         "examples": ["PlayerFM/1.0 Podcast Sync (0 subscribers; url=https://player.fm/series/series-2567872)"],
     },
-    {"name": "Podbean Importer", "pattern": "^Podbean Importer", "examples": ["Podbean Importer"]},
+    {"name": "Podbean Importer", "pattern": re.compile("^Podbean Importer"), "examples": ["Podbean Importer"]},
     {
         "name": "Podcastindex.org",
         "pattern": re.compile("^Podcastindex\\.org/"),
@@ -436,7 +436,7 @@ bots = [
         "urls": ["https://podverse.fm"],
         "comments": "This service parses publicly-accessible RSS feeds on a timer, then stores parsed data in the Podverse database.",
     },
-    {"name": "PodvineBot", "pattern": "^PodvineBot/", "examples": ["PodvineBot/4.0.1 (www.podvine.com)"]},
+    {"name": "PodvineBot", "pattern": re.compile("^PodvineBot/"), "examples": ["PodvineBot/4.0.1 (www.podvine.com)"]},
     {
         "name": "PostRank Bot",
         "pattern": re.compile("^PostRank/"),
@@ -458,7 +458,7 @@ bots = [
         ],
         "urls": ["https://pptr.dev/"],
     },
-    {"name": "python-requests", "pattern": "python-requests"},
+    {"name": "python-requests", "pattern": re.compile("python-requests")},
     {
         "name": "RedCircle",
         "pattern": re.compile("RedCircle"),
@@ -484,7 +484,7 @@ bots = [
         "pattern": re.compile("^Mechanize|[ -]Mechanize/"),
         "examples": ["Mozilla/5.0 (compatible; Mechanize/2.7.4)", "WWW-Mechanize/1.72"],
     },
-    {"name": "Screaming Frog SEO Spider", "pattern": "^Screaming Frog ", "examples": ["Screaming Frog SEO Spider/5.1"]},
+    {"name": "Screaming Frog SEO Spider", "pattern": re.compile("^Screaming Frog "), "examples": ["Screaming Frog SEO Spider/5.1"]},
     {
         "name": "SearchAtlas.com SEO Crawler",
         "pattern": re.compile("^SearchAtlas.*Crawler"),
@@ -501,8 +501,8 @@ bots = [
         "urls": ["https://serendeputy.com/about/serendeputy-bot"],
         "examples": ["SerendeputyBot/0.8.6 (http://serendeputy.com/about/serendeputy-bot)"],
     },
-    {"name": "Simplecast", "pattern": "^Simplecast$", "examples": ["Simplecast"]},
-    {"name": "Slack Bot", "pattern": "^Slackbot 1\\.0", "examples": ["Slackbot 1.0 ( https://api.slack.com/robots)"]},
+    {"name": "Simplecast", "pattern": re.compile("^Simplecast$"), "examples": ["Simplecast"]},
+    {"name": "Slack Bot", "pattern": re.compile("^Slackbot 1\\.0"), "examples": ["Slackbot 1.0 ( https://api.slack.com/robots)"]},
     {
         "name": "Snapchat Bot",
         "pattern": re.compile("://developers\\.snap\\.com/robots"),
@@ -515,8 +515,8 @@ bots = [
         "comments": "This useragent, currently simply Spotify/1.0, is used when retrieving the RSS and audio for Spotify's catalogue. It isn't used for passthru.",
         "examples": ["Spotify/1.0"],
     },
-    {"name": "Stitcher Bot", "pattern": "^StitcherBot"},
-    {"name": "Timpi search crawler", "pattern": "Timpibot/", "examples": ["Timpibot/0.8 ( http://www.timpi.io)"]},
+    {"name": "Stitcher Bot", "pattern": re.compile("^StitcherBot")},
+    {"name": "Timpi search crawler", "pattern": re.compile("Timpibot/"), "examples": ["Timpibot/0.8 ( http://www.timpi.io)"]},
     {
         "name": "Tiny Tiny RSS",
         "pattern": re.compile("^Tiny Tiny RSS/"),
@@ -524,14 +524,14 @@ bots = [
         "urls": ["https://tt-rss.org/"],
         "comments": "Found autodownloading hundreds of episodes from an entire feed in rapid succession",
     },
-    {"name": "Trendsmap Resolver", "pattern": "TrendsmapResolver/"},
+    {"name": "Trendsmap Resolver", "pattern": re.compile("TrendsmapResolver/")},
     {
         "name": "Twingly Bot",
         "pattern": re.compile("Twingly Recon;"),
         "examples": ["Mozilla/5.0 (compatible; Twingly Recon; twingly.com)"],
     },
-    {"name": "Twitterbot", "pattern": "^Twitterbot"},
-    {"name": "Typhoeus", "pattern": "^Typhoeus"},
+    {"name": "Twitterbot", "pattern": re.compile("^Twitterbot")},
+    {"name": "Typhoeus", "pattern": re.compile("^Typhoeus")},
     {
         "name": "UCast",
         "pattern": re.compile("^UCast/"),
@@ -539,7 +539,7 @@ bots = [
             "UCast/1.0 Podcast Sync (1 subscribers; feed-id=aHR0cHM6Ly9mZWVkcy5idXp6c3Byb3V0LmNvbS8yMDg0OTQucnNzEAEBAD32-0242-42AC-8583-21E9BAD8C544; +http://www.ucastapp.com/)"
         ],
     },
-    {"name": "TelegramBot", "pattern": "^TelegramBot ", "examples": ["TelegramBot (like TwitterBot)"]},
+    {"name": "TelegramBot", "pattern": re.compile("^TelegramBot "), "examples": ["TelegramBot (like TwitterBot)"]},
     {
         "name": "Vurbl",
         "pattern": re.compile("VurblBot"),
@@ -547,10 +547,10 @@ bots = [
         "urls": ["https://vurbl.com/about-us/"],
         "examples": ["Mozilla/5.0 https://vurbl.com VurblBot/1.0"],
     },
-    {"name": "Wget", "pattern": "Wget"},
-    {"name": "weborama", "pattern": "^weborama-fetcher", "examples": ["weborama-fetcher (+http://www.weborama.com)"]},
-    {"name": "Windows Crawler", "pattern": "^ZDM/.*Windows", "examples": ["ZDM/4.0; Windows Mobile 7.0;"]},
-    {"name": "WordPress", "pattern": "^WordPress"},
+    {"name": "Wget", "pattern": re.compile("Wget")},
+    {"name": "weborama", "pattern": re.compile("^weborama-fetcher"), "examples": ["weborama-fetcher (+http://www.weborama.com)"]},
+    {"name": "Windows Crawler", "pattern": re.compile("^ZDM/.*Windows"), "examples": ["ZDM/4.0; Windows Mobile 7.0;"]},
+    {"name": "WordPress", "pattern": re.compile("^WordPress")},
     {
         "name": "wsrv.nl",
         "pattern": re.compile("https?://wsrv.nl/"),
@@ -570,7 +570,7 @@ bots = [
         "pattern": re.compile("Yahoo! Slurp"),
         "examples": ["Crawler Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp)"],
     },
-    {"name": "YandexBot", "pattern": "YandexBot/"},
-    {"name": "Zapier", "pattern": "^Zapier$", "examples": ["Zapier"]},
-    {"name": "Zencast", "pattern": "^Zencastr/", "examples": ["Zencastr/2.0"]},
+    {"name": "YandexBot", "pattern": re.compile("YandexBot/")},
+    {"name": "Zapier", "pattern": re.compile("^Zapier$"), "examples": ["Zapier"]},
+    {"name": "Zencast", "pattern": re.compile("^Zencastr/"), "examples": ["Zencastr/2.0"]},
 ]

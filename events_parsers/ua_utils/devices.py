@@ -1,8 +1,8 @@
 import re
 
 devices = [
-    {"name": "Apple HomePod", "pattern": "HomePod", "category": "smart_speaker"},
-    {"name": "Apple iPad", "pattern": "ipad|iPad|IPAD", "category": "mobile"},
+    {"name": "Apple HomePod", "pattern": re.compile("HomePod"), "category": "smart_speaker"},
+    {"name": "Apple iPad", "pattern": re.compile("ipad|iPad|IPAD"), "category": "mobile"},
     {
         "name": "Apple TV",
         "pattern": re.compile("Apple TV|AppleTV|apple;apple_tv"),
@@ -21,11 +21,11 @@ devices = [
             "Anytime/1.1 b64 (phone;ios Version 15.6.1 (Build 19G82)) https://github.com/amugofjava/anytime_podcast_player",
         ],
     },
-    {"name": "Apple Watch", "pattern": "watch|Watch OS", "category": "watch"},
-    {"name": "Apple iPod", "pattern": "iPod|IPOD", "category": "mobile"},
-    {"name": "Apple Computer", "pattern": "OS X|OSX|Macintosh|Macbook", "category": "computer"},
-    {"name": "Google Home", "pattern": "GoogleChirp|Google-Speech-Actions", "category": "smart_speaker"},
-    {"name": "Google Chromebook", "pattern": "Chromebook|CrOS", "category": "computer"},
+    {"name": "Apple Watch", "pattern": re.compile("watch|Watch OS"), "category": "watch"},
+    {"name": "Apple iPod", "pattern": re.compile("iPod|IPOD"), "category": "mobile"},
+    {"name": "Apple Computer", "pattern": re.compile("OS X|OSX|Macintosh|Macbook"), "category": "computer"},
+    {"name": "Google Home", "pattern": re.compile("GoogleChirp|Google-Speech-Actions"), "category": "smart_speaker"},
+    {"name": "Google Chromebook", "pattern": re.compile("Chromebook|CrOS"), "category": "computer"},
     {
         "name": "Android Tablet",
         "pattern": re.compile("[a|A]ndroid.*[t|T]ablet|[t|T]ablet.*[a|A]ndroid|SM-T| GT-"),
@@ -54,11 +54,11 @@ devices = [
         "pattern": re.compile("Windows|windows|WMPlayer|Winamp|Win32|Win64|NSPlayer|MediaMonkey|NSPlayer|PC"),
         "category": "computer",
     },
-    {"name": "Amazon Smart Speaker", "pattern": "Alexa|^Echo/", "category": "smart_speaker"},
-    {"name": "Other Smart Speaker", "pattern": "sonos|Sonos|^Bose/|^VictorReader", "category": "smart_speaker"},
-    {"name": "Other Computer", "pattern": "Lavf/|desktop|Linux|linux|VLC|^okhttp/|CastBox/", "category": "computer"},
-    {"name": "Other Tablet", "pattern": "tablet|Tablet", "category": "mobile"},
-    {"name": "Other Watch", "pattern": "watch|Watch", "category": "watch"},
+    {"name": "Amazon Smart Speaker", "pattern": re.compile("Alexa|^Echo/"), "category": "smart_speaker"},
+    {"name": "Other Smart Speaker", "pattern": re.compile("sonos|Sonos|^Bose/|^VictorReader"), "category": "smart_speaker"},
+    {"name": "Other Computer", "pattern": re.compile("Lavf/|desktop|Linux|linux|VLC|^okhttp/|CastBox/"), "category": "computer"},
+    {"name": "Other Tablet", "pattern": re.compile("tablet|Tablet"), "category": "mobile"},
+    {"name": "Other Watch", "pattern": re.compile("watch|Watch"), "category": "watch"},
     {
         "name": "Other Mobile Device",
         "pattern": re.compile("Player FM$|^Podkicker\/|spotify_unknown|^Castro|^Swoot Agent| KAIOS/|^Zune/|^PodcastGuru |^Pocket Casts$|^AmazonMusic$"),

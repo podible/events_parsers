@@ -32,9 +32,16 @@ class TestUserAgentMethods(unittest.TestCase):
             normalized = normalize_user_agent(ua[0])
             self.assertEqual(normalized, ("bot", ua[1]))
 
-    def test_normalize_user_agent_for_library(self):
+    def test_normalize_user_agent_for_library_bot(self):
         for ua in [
             ("okhttp/3.12.1", "okhttp"),
+        ]:
+            normalized = normalize_user_agent(ua[0])
+            self.assertEqual(normalized, ("bot", ua[1]))
+
+    def test_normalize_user_agent_for_library(self):
+        for ua in [
+            ("AppleCoreMedia/1.0.0.16G114 (iPod touch; U; CPU OS 12_4_2 like Mac OS X; en_us)", "AppleCoreMedia"),
         ]:
             normalized = normalize_user_agent(ua[0])
             self.assertEqual(normalized, ("library", ua[1]))
