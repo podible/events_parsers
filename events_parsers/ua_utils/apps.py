@@ -264,7 +264,7 @@ apps = [
         "pattern": re.compile("^Radio\\.com/"),
         "examples": ["Radio.com/12.2.0 (com.cbsradio.cbsradioplayer; build:1; iOS 14.6.0) Alamofire/4.8.1"],
     },
-    {"name": "Audible", "pattern": "(^com\\.audible\\.playersdk\\.player|^Audible,|^Audible.*Darwin)"},
+    {"name": "Audible", "pattern": re.compile("(^com\\.audible\\.playersdk\\.player|^Audible,|^Audible.*Darwin)")},
     {"name": "Audio", "pattern": re.compile("^Audio/"), "examples": ["Audio/105 CFNetwork/548.1.4 Darwin/11.0.0"]},
     {
         "name": "Audio Now",
@@ -694,7 +694,7 @@ apps = [
     {"name": "Files", "pattern": re.compile("^Files/"), "examples": ["Files/1.0 CFNetwork/758.3.15 Darwin/15.4.0"]},
     {"name": "FilesPro", "pattern": re.compile("^FilesPro/"), "examples": ["FilesPro/646 CFNetwork/711.1.16 Darwin/14.0.0"]},
     {"name": "Fili", "pattern": re.compile("^Fili/"), "examples": ["Fili/3617 CFNetwork/609.1.4 Darwin/13.0.0"]},
-    {"name": "Flash", "pattern": "(^MAC |^WIN )"},
+    {"name": "Flash", "pattern": re.compile("(^MAC |^WIN )")},
     {
         "name": "folkebladet.no",
         "pattern": re.compile("^folkebladet\\.no/"),
@@ -802,7 +802,7 @@ apps = [
         "urls": ["https://cloud.google.com/text-to-speech/docs/ssml"],
         "comments": "This is audio downloaded as a result of a Google Assistant voice action. It's unlikely to appear in podcast host logs, since voice actions can only use up to 120 seconds of audio.",
     },
-    {"name": "Google Nest Hub", "pattern": "(Fuchsia).* CrKey/"},
+    {"name": "Google Nest Hub", "pattern": re.compile("(Fuchsia).* CrKey/")},
     {
         "name": "Google Podcasts",
         "pattern": re.compile("(GoogleChirp|^GooglePodcasts/|^Podcasts$|GSA/)"),
@@ -1681,7 +1681,7 @@ apps = [
             "Spotify/8.7.76.359 SM-R870/30 (SM-R870)",
         ],
     },
-    {"name": "Spreaker", "pattern": "(^Spreaker for Android|Spreaker/)"},
+    {"name": "Spreaker", "pattern": re.compile("(^Spreaker for Android|Spreaker/)")},
     {
         "name": "Stavanger Aftenblad Android app",
         "pattern": re.compile("Android SA Hermes/"),

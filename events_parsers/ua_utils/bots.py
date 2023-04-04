@@ -67,7 +67,7 @@ bots = [
             "(null)/(null) watchOS/5.0.1 model/Watch3,3 hwp/t8004 build/16R381 (6; dt:155)",
         ],
     },
-    {"name": "Apple Podcasts automated checks", "pattern": "(iTMS|itunesstored)"},
+    {"name": "Apple Podcasts automated checks", "pattern": re.compile("(iTMS|itunesstored)")},
     {
         "name": "Applebot",
         "pattern": re.compile("^Applebot/"),
@@ -99,7 +99,7 @@ bots = [
         "examples": ["AwarioSmartBot/1.0 (+https://awario.com/bots.html; bots@awario.com)"],
     },
     {"name": "Babbar", "pattern": re.compile("Barkrowler/"), "urls": ["https://beta.babbar.tech/crawler"]},
-    {"name": "Baidu", "pattern": "\\(ce\\.baidu\\.com", "examples": ["Baidu-YunGuanCe-SLABot(ce.baidu.com)"]},
+    {"name": "Baidu", "pattern": re.compile("\\(ce\\.baidu\\.com"), "examples": ["Baidu-YunGuanCe-SLABot(ce.baidu.com)"]},
     {"name": "bbot", "pattern": re.compile("^bbot/"), "examples": ["bbot/0.1"]},
     {
         "name": "British Library",
@@ -478,7 +478,7 @@ bots = [
         "urls": ["https://apps.apple.com/be/app/audiowave-podcast-player/id1602776751"],
         "examples": ["RSStT/2.2.1 RSS Reader"],
     },
-    {"name": "RSSRadio", "pattern": "^RSSRadio \\("},
+    {"name": "RSSRadio", "pattern": re.compile("^RSSRadio \\(")},
     {
         "name": "Ruby Mechanize",
         "pattern": re.compile("^Mechanize|[ -]Mechanize/"),
@@ -508,7 +508,7 @@ bots = [
         "pattern": re.compile("://developers\\.snap\\.com/robots"),
         "examples": ["Snap URL Preview Service; bot; snapchat; https://developers.snap.com/robots"],
     },
-    {"name": "SoundOn Bot", "pattern": "^SoundOn/[\\d.]+\\s+\\(bot"},
+    {"name": "SoundOn Bot", "pattern": re.compile("^SoundOn/[\\d.]+\\s+\\(bot")},
     {
         "name": "Spotify cache service",
         "pattern": re.compile("^Spotify/1\\.0$"),
