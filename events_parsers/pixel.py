@@ -130,10 +130,13 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
     request_id = data.get("requestId") or data.get("externalCampaignId")
     clname = data.get("clname")
 
-
     # TODO: Remove after 2023-06-30
     if request_id == "797efd50-0872-4ebe-b1ea-b769b4280ccd":
         clname = "lockedonnba"
+
+    # TODO: Remove after 2023-06-30
+    if request_id == "f07e503a-e759-4acc-b445-efd385a07fb6":
+        clname = "customcollectionbusinesspodcast"
 
     return {
         # cast string to things coming from query params, badly placed pixel can cause types mismatch
