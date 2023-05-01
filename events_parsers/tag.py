@@ -160,17 +160,21 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         print(f"ERROR ({e}) Bad device_id in data: {data}")  # NB: watch it in CloudWatch!
         device_id = str(uuid4())
 
-    email_raw, email_md5, email_sha256 = data.get('hashed_email'), None, None
-    if email_raw:
-        if '@' in email_raw:
-            email_md5 = hashlib.md5(email_raw.encode('utf-8')).hexdigest().lower()
-            email_sha256 = hashlib.sha256(email_raw.encode('utf-8')).hexdigest().lower()
-        elif len(email_raw) == 32:
-            email_md5 = email_raw
-        elif len(email_raw) == 64:
-            email_sha256 = email_raw
-        else:
-            print(f"ERROR Bad hashed_email: {email_raw}")  # NB: watch it in CloudWatch!
+    email_raw, email_md5, email_sha256 = None, None, None
+    try:
+        email_raw = data.get('hashed_email')
+        if email_raw:
+            if '@' in email_raw:
+                email_md5 = hashlib.md5(email_raw.encode('utf-8')).hexdigest().lower()
+                email_sha256 = hashlib.sha256(email_raw.encode('utf-8')).hexdigest().lower()
+            elif len(email_raw) == 32:
+                email_md5 = email_raw
+            elif len(email_raw) == 64:
+                email_sha256 = email_raw
+            else:
+                print(f"ERROR Bad hashed_email: {email_raw}")  # NB: watch it in CloudWatch!
+    except Exception as e:
+        print(f"ERROR ({e}) Bad hashed_email in data: {data}")  # NB: watch it in CloudWatch!
 
     return {
         "user_id": str(data["user_id"]) if "user_id" in data else None,
