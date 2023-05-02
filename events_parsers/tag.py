@@ -165,6 +165,7 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         email_raw = data.get('hashed_email')
         if email_raw:
             if '@' in email_raw:
+                email_raw = email_raw.lower()
                 email_md5 = hashlib.md5(email_raw.encode('utf-8')).hexdigest().lower()
                 email_sha256 = hashlib.sha256(email_raw.encode('utf-8')).hexdigest().lower()
             elif len(email_raw) == 32:
