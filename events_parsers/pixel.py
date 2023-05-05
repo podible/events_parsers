@@ -149,7 +149,7 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         "user_id": str(user_id) if user_id is not None else user_id,
         "user_agent": str(user_agent) if user_agent is not None else user_agent,
         "request_id": str(request_id) if request_id is not None else request_id,
-        "clname": str(clname) if clname is not None else clname,
+        "clname": str(clname) if clname is not None else '',
         "ip": str(ip) if ip is not None else ip,
         "params": json.dumps(data, default=str),
         "country": country,
