@@ -123,7 +123,7 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         activity_kind = data.get("activitykind")
         if activity_kind == "event":
             event_name = data.get("event_name")
-            action = EVENT_MAPPING.get(event_name)
+            action = EVENT_MAPPING.get(event_name) or event_name
         elif activity_kind:
             action = activity_kind
         else:
