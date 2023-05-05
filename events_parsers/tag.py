@@ -118,8 +118,14 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         None,
     )
 
-    action = data.get("activitykind") or data.get("action")
-    action = EVENT_MAPPING.get(action) or action
+    action = None
+    try:
+        action = data.get("activitykind") or data.get("action")
+        if action is not None:
+            action = str(action)
+            action = EVENT_MAPPING.get(action) or action
+    except Exception as e:
+        print(f"ERROR ({e}) Invalid action in data: {data}")  # NB: watch it in CloudWatch!
 
     params = json.dumps(
         data,
