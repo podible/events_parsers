@@ -14,9 +14,9 @@ EVENT_MAPPING = {
     "Trial Started": "signup",  # Adjast
     "Trial Converted": "purchase",  # Adjast
     "Initial Purchase": "purchase",  # Paired
-    "SUBSCRIPTION_PAGE_PURCHASE_SUCCESS": "signup",  # DoorDash
-    "FIRST_ORDER_COMPLETE": "lead",  # DoorDash
-    "ALL-ORDER_SUCCESS": "purchase",  # DoorDash
+    "SEGMENT_M_SUBSCRIPTION_PAGE_PURCHASE_SUCCESS": "signup",  # DoorDash
+    "SEGMENT_M_FIRST_ORDER_COMPLETE": "lead",  # DoorDash
+    "SEGMENT_ALL-ORDER_SUCCESS": "purchase",  # DoorDash
 }
 
 
