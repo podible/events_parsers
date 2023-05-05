@@ -10,6 +10,15 @@ from events_parsers.helpers import check_and_reformat_ip
 from events_parsers.dma import ZIP2DMA
 from events_parsers.ua_utils.user_agent import normalize_user_agent, normalize_device
 
+EVENT_MAPPING = {
+    "Trial Started": "signup",  # Adjast
+    "Trial Converted": "purchase",  # Adjast
+    "Initial Purchase": "purchase",  # Paired
+    "SUBSCRIPTION_PAGE_PURCHASE_SUCCESS": "signup",  # DoorDash
+    "FIRST_ORDER_COMPLETE": "lead",  # DoorDash
+    "ALL-ORDER_SUCCESS": "purchase",  # DoorDash
+}
+
 
 def process_event(data, ip_usage_type_db, ip_zipcode_db):
     request_timestamp = datetime.fromtimestamp(data["request_timestamp"], pytz.UTC)  # .strftime("%Y-%m-%d %H:%M:%S.%f")  # for kafka
@@ -109,17 +118,8 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         None,
     )
 
-    action = data.get("activitykind") or data.get("action", None)
-    try:
-        # Handle Adjast + Paired
-        if action == "event":
-            if data.get("event_name") == "Trial Started":
-                action = "signup"
-            
-            if data.get("event_name") == "Trial Converted" or data.get("event_name") == "Initial Purchase":
-                action = "purchase"
-    except Exception as e:
-        print(f"ERROR ({e}) Invalid activitykind or action: {data}")  # NB: watch it in CloudWatch!
+    action = data.get("activitykind") or data.get("action")
+    action = EVENT_MAPPING.get(action) or action
 
     params = json.dumps(
         data,
