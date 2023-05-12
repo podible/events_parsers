@@ -108,8 +108,7 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         except Exception as e:
             print(f"ERROR ({e}) ZIP2DMA: {postal}", flush=True)  # NB: watch it in CloudWatch!
 
-    order_value, order_number, currency, discount_code, hashed_email, referrer, landing_url = (
-        None,
+    order_value, order_number, currency, discount_code, referrer, landing_url = (
         None,
         None,
         None,
