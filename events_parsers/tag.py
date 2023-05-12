@@ -148,7 +148,6 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         if discount_code == "null" or discount_code == "undefined" or discount_code == "":
             discount_code = None
 
-        hashed_email = data.get("hashed_email")
         referrer = unquote_plus(str(data["referrer"])) if "referrer" in data else None
         landing_url = unquote_plus(str(data["url"])) if "url" in data else None
     except Exception as e:
@@ -170,9 +169,9 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         print(f"ERROR ({e}) Bad device_id in data: {data}")  # NB: watch it in CloudWatch!
         device_id = str(uuid4())
 
-    email_raw, email_md5, email_sha256 = None, None, None
+    email_md5, email_sha256 = None, None
     try:
-        email_raw = data.get('hashed_email')
+        email_raw = data.pop('hashed_email')
         if email_raw:
             if '@' in email_raw:
                 email_md5 = hashlib.md5(email_raw.encode('utf-8')).hexdigest().lower()
@@ -208,11 +207,9 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         "order_number": order_number,
         "currency": currency,
         "discount_code": discount_code,
-        "hashed_email": hashed_email,
         "referrer": referrer,
         "landing_url": landing_url,
         "DMA": dma,
-        "email_raw": email_raw,
         "email_md5": email_md5,
         "email_sha256": email_sha256
     }
