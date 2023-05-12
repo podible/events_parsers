@@ -172,7 +172,7 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
     try:
         email_raw = data.pop('hashed_email')
         if email_raw:
-            email_raw = str(email_raw).lower()
+            email_raw = str(email_raw).lower().strip()
             if '@' in email_raw:
                 email_md5 = hashlib.md5(email_raw.encode('utf-8')).hexdigest().lower()
                 email_sha256 = hashlib.sha256(email_raw.encode('utf-8')).hexdigest().lower()
