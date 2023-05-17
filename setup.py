@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name='events_parsers',
-    version='0.0.19',
+    version='0.0.20',
     author='Podscribe',
     author_email='ivan@podscribe.com',
     description='Parsing row events for Podscribe',
