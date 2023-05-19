@@ -1,5 +1,6 @@
 import json
 import hashlib
+import re
 from datetime import datetime
 from urllib.parse import unquote_plus
 from uuid import uuid4, UUID
@@ -50,16 +51,6 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
             print(f"ERROR ({e}) invalid or no body in data: {data}")  # NB: watch it in CloudWatch!
     else:
         print(f"ERROR Invalid http_method: {http_method}")  # NB: watch it in CloudWatch!
-
-    try:
-        data["headers"] = json.loads(data["headers"])
-        mvh = data["headers"]
-        if not mvh or not isinstance(mvh, dict):
-            raise Exception("headers is not a dict")
-        mvh = json.dumps(mvh, default=str)
-    except Exception as e:
-        print(f"ERROR ({e}) Invalid headers: {data}")  # NB: watch it in CloudWatch!
-        mvh = None
 
     ip = None
     try:
@@ -130,11 +121,6 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
     except Exception as e:
         print(f"ERROR ({e}) Invalid action in data: {data}")  # NB: watch it in CloudWatch!
 
-    params = json.dumps(
-        data,
-        default=str,
-    )
-
     try:
         order_value = float(data.get("value")) if data.get("value") else None
     except Exception as e:
@@ -184,6 +170,29 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
                 print(f"ERROR Bad hashed_email: {email_raw}")  # NB: watch it in CloudWatch!
     except Exception as e:
         print(f"ERROR ({e}) Bad hashed_email in data: {data}")  # NB: watch it in CloudWatch!
+
+    try:
+        if 'x-forwarded-url' in data["headers"]:
+            data["headers"]['x-forwarded-url'] = re.sub(
+                r'hashed_email=[^&]*&?', '',
+                data["headers"]['x-forwarded-url'][0]
+            )
+    except Exception as e:
+        print(f"ERROR ({e}) clearing out hashed_email from x-forwarded-url in data: {data}")  # NB: watch it in CloudWatch!
+
+    try:
+        mvh = json.loads(data.pop("headers"))
+        if not mvh or not isinstance(mvh, dict):
+            raise Exception("headers is not a dict")
+        mvh = json.dumps(mvh, default=str)
+    except Exception as e:
+        print(f"ERROR ({e}) Invalid headers: {data}")  # NB: watch it in CloudWatch!
+        mvh = None
+
+    params = json.dumps(
+        data,
+        default=str,
+    )
 
     return {
         "user_id": str(data["user_id"]) if "user_id" in data else None,
