@@ -24,6 +24,8 @@ EVENT_MAPPING = {
 def process_event(data, ip_usage_type_db, ip_zipcode_db):
     request_timestamp = datetime.fromtimestamp(data["request_timestamp"], pytz.UTC)  # .strftime("%Y-%m-%d %H:%M:%S.%f")  # for kafka
     http_method = data["httpMethod"]
+
+    headers = None
     if http_method == "GET":
         try:
             data["params"] = json.loads(data["params"])
@@ -42,6 +44,11 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
             del data["params"]
         except Exception as e:
             print(f"ERROR ({e}) invalid or no params in data: {data}")  # NB: watch it in CloudWatch!
+        try:
+            headers = data.pop("headers")
+            headers = json.loads(headers)
+        except Exception as e:
+            print(f"ERROR ({e}) invalid or no headers in data: {data}")  # NB: watch it in CloudWatch!
     elif http_method == "POST":
         try:
             data["body"] = json.loads(data["body"])
@@ -54,19 +61,19 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
 
     ip = None
     try:
-        check_ip = data.get("ip") or data["headers"]["x-forwarded-for"][0].split(",")[0]
+        check_ip = data.get("ip") or headers["x-forwarded-for"][0].split(",")[0]
         try:
             ip = check_and_reformat_ip(check_ip)
         except ValueError:
             print(
-                f"ERROR Invalid ip ({check_ip}) in x-forwarded-for: {data['headers']['x-forwarded-for']}"
+                f"ERROR Invalid ip ({check_ip}) in x-forwarded-for: {headers['x-forwarded-for']}"
             )  # NB: watch it in CloudWatch!
     except Exception as e:
-        print(f"ERROR ({e}) Invalid ip in headers: {data}")  # NB: watch it in CloudWatch!
+        print(f"ERROR ({e}) Invalid ip in headers: {headers}")  # NB: watch it in CloudWatch!
 
     user_agent, device, normalized_user_agent = None, None, None
     try:
-        user_agent = data.get("useragent") or data["headers"]["user-agent"][0]
+        user_agent = data.get("useragent") or headers["user-agent"][0]
         ua_type, normalized_user_agent = normalize_user_agent(user_agent)
         if ua_type != "bot":
             device = normalize_device(user_agent)
@@ -172,22 +179,24 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         print(f"ERROR ({e}) Bad hashed_email in data: {data}")  # NB: watch it in CloudWatch!
 
     try:
-        if 'x-forwarded-url' in data["headers"]:
-            data["headers"]['x-forwarded-url'] = re.sub(
+        if 'x-forwarded-url' in headers:
+            headers['x-forwarded-url'] = re.sub(
                 r'hashed_email=[^&]*&?', '',
-                data["headers"]['x-forwarded-url'][0]
+                headers['x-forwarded-url'][0]
             )
     except Exception as e:
         print(f"ERROR ({e}) clearing out hashed_email from x-forwarded-url in data: {data}")  # NB: watch it in CloudWatch!
 
     try:
-        mvh = json.loads(data.pop("headers"))
-        if not mvh or not isinstance(mvh, dict):
-            raise Exception("headers is not a dict")
-        mvh = json.dumps(mvh, default=str)
+        headers = json.dumps(headers, default=str)
     except Exception as e:
-        print(f"ERROR ({e}) Invalid headers: {data}")  # NB: watch it in CloudWatch!
-        mvh = None
+        try:
+            # in case if in headers is smth not serializable
+            if headers is not None:
+                headers = str(headers)
+        except:
+            headers = None
+        print(f"ERROR ({e}) Invalid headers: {headers}")  # NB: watch it in CloudWatch!
 
     params = json.dumps(
         data,
@@ -202,7 +211,7 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         "device": device,
         "normalized_user_agent": normalized_user_agent,
         "params": params,
-        "headers": mvh,
+        "headers": headers,
         "action": action,
         "country": country,
         "city": city,
