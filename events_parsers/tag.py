@@ -155,6 +155,9 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
     if advertiser == "bookshop.org":
         advertiser = "bookshoporg"
 
+    if advertiser == "acastself-serve":
+        advertiser = "acastselfserve"
+
     try:
         device_id = str(UUID(str(data["device_id"]), version=4)) if "device_id" in data else None
     except Exception as e:
