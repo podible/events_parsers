@@ -135,6 +135,9 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
 
     try:
         order_number = data.get("order_number")
+        if order_number == "null" or order_number == "undefined" or order_number == "":
+            order_number = None
+
         currency = data.get("currency", "USD")
         discount_code = data.get("discount_code")
         if discount_code == "null" or discount_code == "undefined" or discount_code == "":
