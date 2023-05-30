@@ -3,7 +3,7 @@ import hashlib
 import re
 from datetime import datetime
 from urllib.parse import unquote_plus
-from uuid import uuid4, UUID
+from uuid import uuid4
 
 import pytz
 
@@ -162,7 +162,7 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         advertiser = "acastselfserve"
 
     try:
-        device_id = str(UUID(str(data["device_id"]), version=4)) if "device_id" in data else None
+        device_id = str(data["device_id"]) if "device_id" in data else None
     except Exception as e:
         print(f"ERROR ({e}) Bad device_id in data: {data}")  # NB: watch it in CloudWatch!
         device_id = str(uuid4())
@@ -183,6 +183,18 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
                 print(f"ERROR Bad hashed_email: {email_raw}")  # NB: watch it in CloudWatch!
     except Exception as e:
         print(f"ERROR ({e}) Bad hashed_email in data: {data}")  # NB: watch it in CloudWatch!
+
+
+    idfa, gaid = None, None
+    try:
+        idfa = data.get('idfa').lower() if 'idfa' in data else None
+    except Exception as e:
+        print(f"ERROR ({e}) Bad idfa in data: {data}")
+
+    try:
+        gaid = data.get('gaid').lower() if 'gaid' in data else None
+    except Exception as e:
+        print(f"ERROR ({e}) Bad gaid in data: {data}")
 
     try:
         if 'x-forwarded-url' in headers:
@@ -235,5 +247,7 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         "landing_url": landing_url,
         "DMA": dma,
         "email_md5": email_md5,
-        "email_sha256": email_sha256
+        "email_sha256": email_sha256,
+        "idfa": idfa,
+        "gaid": gaid,
     }
