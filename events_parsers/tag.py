@@ -198,7 +198,13 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         print(f"ERROR ({e}) Bad idfa in data: {data}")
 
     try:
+        # Google Advertising ID (GAID) For Singular integration
+        # Unhashed Android ID - this identifier is available if the advertising identifier (AIFA) is not available on the device. As this identifier is not always available, we recommend using {AIFA}, or {COALESCE|{AIFA},{ANDI}} to ensure a value is always passed.
+        aifa = data.get('aifa').lower() if 'aifa' in data else None
+        andi = data.get('andi').lower() if 'andi' in data else None
         gaid = data.get('gaid').lower() if 'gaid' in data else None
+
+        gaid = gaid or aifa or andi
     except Exception as e:
         print(f"ERROR ({e}) Bad gaid in data: {data}")
 
