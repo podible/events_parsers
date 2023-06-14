@@ -76,7 +76,7 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
 
     user_agent, device, normalized_user_agent = None, None, None
     try:
-        user_agent = data.get("useragent") or headers["user-agent"][0]
+        user_agent = data.get("useragent") or data.get("user_agent") or headers["user-agent"][0]
         ua_type, normalized_user_agent = normalize_user_agent(user_agent)
         if ua_type != "bot":
             device = normalize_device(user_agent)
