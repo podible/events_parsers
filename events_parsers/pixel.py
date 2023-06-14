@@ -227,4 +227,9 @@ def parse_impression_data(data):
         episode_id = data.get("eid") or None
         series_id = data.get("pid") or None
 
+    # Redcircle
+    if platform == "redcircle":
+        episode_id = data.get("eid") or None
+        series_id = data.get("pid") or None
+
     return advertiser, episode_id, episode_title, series_id, series_title, platform, user_id
