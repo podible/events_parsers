@@ -131,8 +131,8 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
             action = activity_kind
             raw_action = activity_kind
         else:
-            action = EVENT_MAPPING.get(event_name) or event_name
             raw_action = data.get("action")
+            action = EVENT_MAPPING.get(raw_action) or raw_action
 
     except Exception as e:
         print(f"ERROR ({e}) Invalid action in data: {data}")  # NB: watch it in CloudWatch!
