@@ -21,6 +21,7 @@ EVENT_MAPPING = {
     "Registered": "lead", # earnIn
     "Activation": "purchase", # earnIn
     "1st Attempted Activation": "signup", # earnIn
+    "sign-up": "signup",  # Wise
 }
 
 
@@ -130,7 +131,7 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
             action = activity_kind
             raw_action = activity_kind
         else:
-            action = data.get("action")
+            action = EVENT_MAPPING.get(event_name) or event_name
             raw_action = data.get("action")
 
     except Exception as e:
