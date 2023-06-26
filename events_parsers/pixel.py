@@ -174,6 +174,7 @@ def parse_impression_data(data):
 
     user_id = data.get("client") or None
     platform = data.get("plt") or None
+    clname = data.get("clname") or None
     episode_id = None
     episode_title = None
     series_id = None
@@ -241,5 +242,16 @@ def parse_impression_data(data):
     if platform == "spreaker":
         episode_id = data.get("eid") or None
         series_id = data.get("showId") or None
+
+    # Podbean
+    if platform == "podbean":
+        # Remove later, wrond pixel for new platfomr
+        if advertiser == "liquidiv" and clname == "rosspattersonrevolution!":
+            series_id = "rosspattersonrevolution!"
+        else:
+            episode_id = data.get("eid") or None
+            series_id = data.get("pid") or None
+
+
 
     return advertiser, episode_id, episode_title, series_id, series_title, platform, user_id
