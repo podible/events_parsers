@@ -19,8 +19,7 @@ EVENT_MAPPING = {
     "SEGMENT_M_FIRST_ORDER_COMPLETE": "lead",  # DoorDash
     "SEGMENT_ALL-ORDER_SUCCESS": "purchase",  # DoorDash
     "Registered": "lead", # earnIn
-    "Activation": "purchase", # earnIn
-    "1st Attempted Activation": "signup", # earnIn
+    "1st Attempted Activation": "purchase", # earnIn
     "sign-up": "signup",  # Wise
 }
 
