@@ -1,5 +1,5 @@
-import json
 import hashlib
+import json
 import re
 from datetime import datetime
 from urllib.parse import unquote_plus
@@ -7,8 +7,8 @@ from uuid import uuid4
 
 import pytz
 
-from events_parsers.helpers import check_and_reformat_ip
 from events_parsers.dma import ZIP2DMA
+from events_parsers.helpers import check_and_reformat_ip, get_normalized_referrer
 from events_parsers.ua_utils.user_agent import normalize_user_agent, normalize_device
 
 EVENT_MAPPING = {
@@ -109,7 +109,8 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         except Exception as e:
             print(f"ERROR ({e}) ZIP2DMA: {postal}", flush=True)  # NB: watch it in CloudWatch!
 
-    order_value, order_number, currency, discount_code, referrer, landing_url = (
+    order_value, order_number, currency, discount_code, referrer, normalized_referrer, landing_url = (
+        None,
         None,
         None,
         None,
@@ -152,6 +153,7 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
             discount_code = None
 
         referrer = unquote_plus(str(data["referrer"])) if "referrer" in data else None
+        normalized_referrer = get_normalized_referrer(referrer)
         landing_url = unquote_plus(str(data["url"])) if "url" in data else None
     except Exception as e:
         print(f"ERROR ({e}) Invalid params: {data}")  # NB: watch it in CloudWatch!
@@ -260,6 +262,7 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         "currency": currency,
         "discount_code": discount_code,
         "referrer": referrer,
+        "normalized_referrer": normalized_referrer,
         "landing_url": landing_url,
         "DMA": dma,
         "email_md5": email_md5,
