@@ -25,9 +25,9 @@ def get_normalized_referrer(referrer: Optional[str]) -> Optional[str]:
                 return None
 
             if re.match('.*utm_source=google.*', parsed_referrer.parsed_url.query):
-                return 'Google ads'
+                return 'google ads'
 
-            return parsed_referrer.domain.capitalize()
+            return parsed_referrer.domain
 
         except (TldDomainNotFound, TldBadUrl):
             pass
