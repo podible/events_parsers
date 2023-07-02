@@ -8,8 +8,9 @@ from uuid import uuid4
 import pytz
 
 from events_parsers.dma import ZIP2DMA
-from events_parsers.helpers import check_and_reformat_ip, get_normalized_referrer
+from events_parsers.helpers import check_and_reformat_ip
 from events_parsers.ua_utils.user_agent import normalize_user_agent, normalize_device
+from events_parsers.utils.referrer import get_normalized_referrer
 
 EVENT_MAPPING = {
     "Trial Started": "signup",  # Adjast
@@ -109,8 +110,7 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         except Exception as e:
             print(f"ERROR ({e}) ZIP2DMA: {postal}", flush=True)  # NB: watch it in CloudWatch!
 
-    order_value, order_number, currency, discount_code, referrer, normalized_referrer, landing_url = (
-        None,
+    order_value, order_number, currency, discount_code, referrer, landing_url = (
         None,
         None,
         None,
@@ -153,7 +153,6 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
             discount_code = None
 
         referrer = unquote_plus(str(data["referrer"])) if "referrer" in data else None
-        normalized_referrer = get_normalized_referrer(referrer)
         landing_url = unquote_plus(str(data["url"])) if "url" in data else None
     except Exception as e:
         print(f"ERROR ({e}) Invalid params: {data}")  # NB: watch it in CloudWatch!
@@ -237,6 +236,8 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         data,
         default=str,
     )
+
+    normalized_referrer = get_normalized_referrer(referrer, landing_url, advertiser)
 
     return {
         "user_id": str(data["user_id"]) if "user_id" in data else None,
