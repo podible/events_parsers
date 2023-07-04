@@ -1,5 +1,7 @@
 import re
 from typing import Optional, List
+from urllib.parse import urlparse
+from urllib.parse import parse_qs
 
 from tld import get_tld, Result
 from tld.exceptions import TldBadUrl, TldDomainNotFound
@@ -19,7 +21,7 @@ def get_normalized_referrer(
         if not urls:
             return None
 
-        if has_google_utm_in_query(list(map(lambda url: url.parsed_url.query, urls))):
+        if has_gclid_in_query(list(map(lambda url: url.parsed_url.query, urls))):
             return 'google ads'
 
         if not advertiser or parsed_referrer.domain.find(advertiser) == -1:
@@ -51,9 +53,24 @@ def parse_urls(urls: List[str]) -> List[Optional[Result]]:
     return result
 
 
-def has_google_utm_in_query(queries: List[str]) -> bool:
+def has_gclid_in_query(queries: List[str]) -> bool:
     for query in queries:
-        if re.match(r'.*utm_source=google.*', query):
+        if re.match(r'.*gclid=*', query):
             return True
 
     return False
+
+def get_utm_source(
+        landing_url: Optional[str],
+) -> Optional[str]:
+    try:
+        if not landing_url:
+            return None
+        
+        parsed_url = urlparse(landing_url)
+        return parse_qs(parsed_url.query)['utm_source'][0]
+
+    except:
+        pass
+
+    return None

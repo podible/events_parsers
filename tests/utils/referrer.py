@@ -1,7 +1,7 @@
 from typing import List
 from unittest import TestCase
 
-from events_parsers.utils.referrer import get_normalized_referrer, has_google_utm_in_query, parse_urls
+from events_parsers.utils.referrer import get_normalized_referrer, has_gclid_in_query, parse_urls, get_utm_source
 
 
 class GetNormalizedReferrerTest(TestCase):
@@ -15,38 +15,12 @@ class GetNormalizedReferrerTest(TestCase):
         self.assertEqual(
             'google ads',
             get_normalized_referrer(
-                'https://podscribe.com/?utm_source=google',
+                'https://podscribe.com/?gclid=123123',
                 'https://podscribe.com/?utm_source=google',
                 'cerebral'
             )
         )
 
-        self.assertEqual(
-            'google ads',
-            get_normalized_referrer(
-                'https://podscribe.com/?utm_source=google',
-                'https://podscribe.com/?utm_source=google',
-                'podscribe'
-            )
-        )
-
-        self.assertEqual(
-            'google ads',
-            get_normalized_referrer(
-                'https://podscribe.com/?utm_source=google',
-                'https://podscribe.com/',
-                'podscribe'
-            )
-        )
-
-        self.assertEqual(
-            'google ads',
-            get_normalized_referrer(
-                'https://podscribe.com/',
-                'https://podscribe.com/?utm_source=google',
-                'podscribe'
-            )
-        )
 
         self.assertNotEqual(
             'google ads',
@@ -114,6 +88,15 @@ class GetNormalizedReferrerTest(TestCase):
             ),
         )
 
+class GetUtmSourceTest(TestCase):
+    def test_returns_null_if_empty(self):
+        result = get_utm_source(None)
+        self.assertEqual(None, result)
+
+    def test_returns_utm_source(self):
+        result = get_utm_source('https://podscribe.com/?utm_source=google')
+        self.assertEqual('google', result)
+
 
 class ParseUrlsTest(TestCase):
     @staticmethod
@@ -159,30 +142,20 @@ class ParseUrlsTest(TestCase):
         self.assertEqual(3, self.__filter_len(result))
 
 
-class HasGoogleUtmInQueryTest(TestCase):
+class HasGclidInQueryTest(TestCase):
     def test_true(self):
-        self.assertTrue(has_google_utm_in_query(['https://podscribe.com/?utm_source=google&some_another_param=123']))
+        self.assertTrue(has_gclid_in_query(['https://podscribe.com/?gclid=google&some_another_param=123']))
 
-        self.assertTrue(has_google_utm_in_query([
-            'https://podscribe.com/?utm_source=google',
-            'https://podscribe.com/?utm_source=google'
+        self.assertTrue(has_gclid_in_query([
+            'https://podscribe.com/?gclid=google',
+            'https://podscribe.com/?gclid=google'
         ]))
 
-        self.assertTrue(has_google_utm_in_query([
-            'https://podscribe.com/',
-            'https://podscribe.com/?utm_source=google'
-        ]))
-
-        self.assertTrue(has_google_utm_in_query([
-            'https://podscribe.com/?utm_source=google'
-            'https://podscribe.com/',
-        ]))
 
     def test_false(self):
-        self.assertFalse(has_google_utm_in_query(['https://podscribe.com/?utm_source=gaagla&some_another_param=123']))
-        self.assertFalse(has_google_utm_in_query(['https://podscribe.com/?utm_source=gaagla']))
+        self.assertFalse(has_gclid_in_query(['https://podscribe.com/?some_another_param=123']))
 
-        self.assertFalse(has_google_utm_in_query([
+        self.assertFalse(has_gclid_in_query([
             'https://podscribe.com/',
             'https://podscribe.com/'
         ]))

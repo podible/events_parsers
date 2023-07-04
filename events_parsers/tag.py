@@ -10,7 +10,7 @@ import pytz
 from events_parsers.dma import ZIP2DMA
 from events_parsers.helpers import check_and_reformat_ip
 from events_parsers.ua_utils.user_agent import normalize_user_agent, normalize_device
-from events_parsers.utils.referrer import get_normalized_referrer
+from events_parsers.utils.referrer import get_normalized_referrer, get_utm_source
 
 EVENT_MAPPING = {
     "Trial Started": "signup",  # Adjast
@@ -237,7 +237,12 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         default=str,
     )
 
-    normalized_referrer = get_normalized_referrer(referrer, landing_url, advertiser)
+    utm_source, normalized_referrer = None, None
+    try:
+        normalized_referrer = get_normalized_referrer(referrer, landing_url, advertiser)
+        utm_source = get_utm_source(landing_url)
+    except Exception as e:
+        print(f"ERROR ({e}) Bad referrer or landing_url in data: {data}")
 
     return {
         "user_id": str(data["user_id"]) if "user_id" in data else None,
@@ -264,6 +269,7 @@ def process_event(data, ip_usage_type_db, ip_zipcode_db):
         "discount_code": discount_code,
         "referrer": referrer,
         "normalized_referrer": normalized_referrer,
+        "utm_source": utm_source,
         "landing_url": landing_url,
         "DMA": dma,
         "email_md5": email_md5,
