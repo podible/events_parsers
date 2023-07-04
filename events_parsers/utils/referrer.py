@@ -68,7 +68,8 @@ def get_utm_source(
             return None
         
         parsed_url = urlparse(landing_url)
-        return parse_qs(parsed_url.query)['utm_source'][0]
+        utm_source =  parse_qs(parsed_url.query)['utm_source'][0]
+        return utm_source.lower()
 
     except:
         pass

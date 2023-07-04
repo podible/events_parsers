@@ -94,7 +94,7 @@ class GetUtmSourceTest(TestCase):
         self.assertEqual(None, result)
 
     def test_returns_utm_source(self):
-        result = get_utm_source('https://podscribe.com/?utm_source=google')
+        result = get_utm_source('https://podscribe.com/?utm_source=Google')
         self.assertEqual('google', result)
 
 
