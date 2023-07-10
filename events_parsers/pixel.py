@@ -234,7 +234,7 @@ def parse_impression_data(data):
         series_id = data.get("pid") or None
 
     # Prx
-    if platform == "redcircle":
+    if platform == "prx":
         episode_id = data.get("eid") or None
         series_id = data.get("show") or None
 
